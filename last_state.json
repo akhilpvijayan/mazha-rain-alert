@@ -8,17 +8,23 @@
           "എറണാകുളം",
           "ഇടുക്കി",
           "തൃശൂർ",
+          "പാലക്കാട്",
           "മലപ്പുറം",
           "കോഴിക്കോട്",
-          "വയനാട്"
+          "വയനാട്",
+          "കണ്ണൂർ",
+          "കാസറഗോഡ്"
         ],
         "districts_en": [
           "Ernakulam",
           "Idukki",
           "Thrissur",
+          "Palakkad",
           "Malappuram",
           "Kozhikode",
-          "Wayanad"
+          "Wayanad",
+          "Kannur",
+          "Kasaragod"
         ]
       }
     ],
@@ -28,16 +34,12 @@
         "districts_ml": [
           "പത്തനംതിട്ട",
           "ആലപ്പുഴ",
-          "കോട്ടയം",
-          "പാലക്കാട്",
-          "കണ്ണൂർ"
+          "കോട്ടയം"
         ],
         "districts_en": [
           "Pathanamthitta",
           "Alappuzha",
-          "Kottayam",
-          "Palakkad",
-          "Kannur"
+          "Kottayam"
         ]
       },
       {
@@ -67,6 +69,9 @@
     "Thrissur": [
       "orange"
     ],
+    "Palakkad": [
+      "orange"
+    ],
     "Malappuram": [
       "orange",
       "yellow"
@@ -79,6 +84,13 @@
       "orange",
       "yellow"
     ],
+    "Kannur": [
+      "orange",
+      "yellow"
+    ],
+    "Kasaragod": [
+      "orange"
+    ],
     "Pathanamthitta": [
       "yellow"
     ],
@@ -87,29 +99,23 @@
     ],
     "Kottayam": [
       "yellow"
-    ],
-    "Palakkad": [
-      "yellow"
-    ],
-    "Kannur": [
-      "yellow"
     ]
   },
   "district_colors": {
     "Alappuzha": "yellow",
     "Ernakulam": "orange",
     "Idukki": "orange",
-    "Kannur": "yellow",
-    "Kasaragod": "green",
+    "Kannur": "orange",
+    "Kasaragod": "orange",
     "Kollam": "green",
     "Kottayam": "yellow",
     "Kozhikode": "orange",
     "Malappuram": "orange",
-    "Palakkad": "yellow",
+    "Palakkad": "orange",
     "Pathanamthitta": "yellow",
     "Thiruvananthapuram": "green",
     "Thrissur": "orange",
     "Wayanad": "orange"
   },
-  "scraped_at": "2026-07-08T12:51:01.384073+05:30"
+  "scraped_at": "2026-07-08T15:57:22.521658+05:30"
 }
