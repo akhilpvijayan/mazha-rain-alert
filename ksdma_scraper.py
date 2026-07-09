@@ -274,19 +274,52 @@ def build_district_alert_map(data: dict) -> dict:
 ALL_DISTRICTS_EN = sorted(DISTRICT_MAP.values())
 
 
-def build_district_colors(data: dict) -> dict:
-    """Simple flat map for coloring mazha.live's district map:
-    { "Kozhikode": "red", "Wayanad": "red", "Ernakulam": "yellow", ...,
-      "Kollam": "green" }  <- green = no active alert
-    Every one of the 14 Kerala districts is always included, so the map
-    always has a color to render, even on a clear day.
+def build_district_colors(data: dict, target_date: str | None = None) -> dict:
+    """Simple flat map for coloring mazha.live's district map, filtered to a
+    SPECIFIC date (defaults to today, IST) so a downgrade/upgrade forecast
+    for a future day doesn't get conflated with today's actual alert level.
+
+    e.g. if Kozhikode is Red on 08/07 but only Yellow on 09/07, calling this
+    with target_date="2026-07-08" correctly returns "red" for Kozhikode,
+    and calling it with "2026-07-09" correctly returns "yellow" instead.
+
+    Every one of the 14 Kerala districts is always included, defaulting to
+    "green" if no alert is listed for that district on that date.
     """
-    district_map = build_district_alert_map(data)  # e.g. {"Kozhikode": ["red", "yellow"]}
+    if target_date is None:
+        target_date = datetime.now(IST).strftime("%Y-%m-%d")
+
+    # Build per-district severity set, but only from entries matching target_date
+    district_levels = {}
+    for level in VALID_LEVELS:
+        for entry in data.get(level, []):
+            if entry["date"] != target_date:
+                continue
+            for d in entry["districts_en"]:
+                district_levels.setdefault(d, set()).add(level)
+
     colors = {}
     for district in ALL_DISTRICTS_EN:
-        levels = district_map.get(district)
-        colors[district] = levels[0] if levels else "green"  # levels[0] = highest severity (red > orange > yellow)
+        levels = district_levels.get(district)
+        if levels:
+            # pick highest severity among same-date entries (red > orange > yellow)
+            highest = sorted(levels, key=lambda l: VALID_LEVELS.index(l))[0]
+            colors[district] = highest
+        else:
+            colors[district] = "green"
     return colors
+
+
+def build_forecast_colors(data: dict) -> dict:
+    """Same as build_district_colors but returns a map of
+    { date: { district: color } } for every date present in the bulletin —
+    useful if you ever want a 'next few days' view instead of just today."""
+    all_dates = set()
+    for level in VALID_LEVELS:
+        for entry in data.get(level, []):
+            all_dates.add(entry["date"])
+
+    return {d: build_district_colors(data, target_date=d) for d in sorted(all_dates)}
 
 
 # ---------------------------------------------------------------------------
@@ -323,7 +356,8 @@ COLORS_FILE = os.path.join(os.path.dirname(__file__), "district_colors.json")
 
 
 def save_state(current: dict):
-    colors = build_district_colors(current)
+    colors = build_district_colors(current)  # today only
+    forecast = build_forecast_colors(current)  # all dates in bulletin
     scraped_at = datetime.now(IST).isoformat()
 
     with open(STATE_FILE, "w", encoding="utf-8") as f:
@@ -331,6 +365,7 @@ def save_state(current: dict):
             "alerts": current,
             "district_alert_map": build_district_alert_map(current),
             "district_colors": colors,
+            "forecast_colors": forecast,
             "scraped_at": scraped_at,
         }, f, ensure_ascii=False, indent=2)
 
@@ -338,6 +373,7 @@ def save_state(current: dict):
     with open(COLORS_FILE, "w", encoding="utf-8") as f:
         json.dump({
             "scraped_at": scraped_at,
+            "date": datetime.now(IST).strftime("%Y-%m-%d"),
             "colors": colors,
         }, f, ensure_ascii=False, indent=2)
 
@@ -379,6 +415,11 @@ def run():
         for a in new_alerts:
             districts = ", ".join(a["districts_en"])
             print(f"  -> {a['level'].upper()} | {a['date']} | {districts}")
+        try:
+            from fcm_notifier import send_alert_notification
+            send_alert_notification(new_alerts)
+        except Exception as e:
+            print(f"[warn] Could not send push notification: {e}")
     else:
         print("\n[info] No new alerts since last run.")
 
