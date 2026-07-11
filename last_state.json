@@ -2,83 +2,9 @@
   "alerts": {
     "red": [],
     "orange": [],
-    "yellow": [
-      {
-        "date": "2026-07-10",
-        "districts_ml": [
-          "തിരുവനന്തപുരം",
-          "കൊല്ലം",
-          "പത്തനംതിട്ട",
-          "ആലപ്പുഴ",
-          "കോട്ടയം",
-          "ഇടുക്കി",
-          "എറണാകുളം",
-          "പാലക്കാട്",
-          "മലപ്പുറം",
-          "കോഴിക്കോട്",
-          "വയനാട്",
-          "കണ്ണൂർ",
-          "കാസറഗോഡ്"
-        ],
-        "districts_en": [
-          "Thiruvananthapuram",
-          "Kollam",
-          "Pathanamthitta",
-          "Alappuzha",
-          "Kottayam",
-          "Idukki",
-          "Ernakulam",
-          "Palakkad",
-          "Malappuram",
-          "Kozhikode",
-          "Wayanad",
-          "Kannur",
-          "Kasaragod"
-        ]
-      }
-    ]
+    "yellow": []
   },
-  "district_alert_map": {
-    "Thiruvananthapuram": [
-      "yellow"
-    ],
-    "Kollam": [
-      "yellow"
-    ],
-    "Pathanamthitta": [
-      "yellow"
-    ],
-    "Alappuzha": [
-      "yellow"
-    ],
-    "Kottayam": [
-      "yellow"
-    ],
-    "Idukki": [
-      "yellow"
-    ],
-    "Ernakulam": [
-      "yellow"
-    ],
-    "Palakkad": [
-      "yellow"
-    ],
-    "Malappuram": [
-      "yellow"
-    ],
-    "Kozhikode": [
-      "yellow"
-    ],
-    "Wayanad": [
-      "yellow"
-    ],
-    "Kannur": [
-      "yellow"
-    ],
-    "Kasaragod": [
-      "yellow"
-    ]
-  },
+  "district_alert_map": {},
   "district_colors": {
     "Alappuzha": "green",
     "Ernakulam": "green",
@@ -95,23 +21,6 @@
     "Thrissur": "green",
     "Wayanad": "green"
   },
-  "forecast_colors": {
-    "2026-07-10": {
-      "Alappuzha": "yellow",
-      "Ernakulam": "yellow",
-      "Idukki": "yellow",
-      "Kannur": "yellow",
-      "Kasaragod": "yellow",
-      "Kollam": "yellow",
-      "Kottayam": "yellow",
-      "Kozhikode": "yellow",
-      "Malappuram": "yellow",
-      "Palakkad": "yellow",
-      "Pathanamthitta": "yellow",
-      "Thiruvananthapuram": "yellow",
-      "Thrissur": "green",
-      "Wayanad": "yellow"
-    }
-  },
-  "scraped_at": "2026-07-11T11:51:48.236714+05:30"
+  "forecast_colors": {},
+  "scraped_at": "2026-07-11T15:14:31.735820+05:30"
 }
