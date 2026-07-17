@@ -2,25 +2,81 @@
   "alerts": {
     "red": [],
     "orange": [],
-    "yellow": []
+    "yellow": [
+      {
+        "date": "2026-07-17",
+        "districts_ml": [
+          "പത്തനംതിട്ട",
+          "കോട്ടയം",
+          "ഇടുക്കി",
+          "എറണാകുളം",
+          "തൃശൂർ",
+          "പാലക്കാട്"
+        ],
+        "districts_en": [
+          "Pathanamthitta",
+          "Kottayam",
+          "Idukki",
+          "Ernakulam",
+          "Thrissur",
+          "Palakkad"
+        ]
+      }
+    ]
   },
-  "district_alert_map": {},
+  "district_alert_map": {
+    "Pathanamthitta": [
+      "yellow"
+    ],
+    "Kottayam": [
+      "yellow"
+    ],
+    "Idukki": [
+      "yellow"
+    ],
+    "Ernakulam": [
+      "yellow"
+    ],
+    "Thrissur": [
+      "yellow"
+    ],
+    "Palakkad": [
+      "yellow"
+    ]
+  },
   "district_colors": {
     "Alappuzha": "green",
-    "Ernakulam": "green",
-    "Idukki": "green",
+    "Ernakulam": "yellow",
+    "Idukki": "yellow",
     "Kannur": "green",
     "Kasaragod": "green",
     "Kollam": "green",
-    "Kottayam": "green",
+    "Kottayam": "yellow",
     "Kozhikode": "green",
     "Malappuram": "green",
-    "Palakkad": "green",
-    "Pathanamthitta": "green",
+    "Palakkad": "yellow",
+    "Pathanamthitta": "yellow",
     "Thiruvananthapuram": "green",
-    "Thrissur": "green",
+    "Thrissur": "yellow",
     "Wayanad": "green"
   },
-  "forecast_colors": {},
-  "scraped_at": "2026-07-17T08:56:30.429304+05:30"
+  "forecast_colors": {
+    "2026-07-17": {
+      "Alappuzha": "green",
+      "Ernakulam": "yellow",
+      "Idukki": "yellow",
+      "Kannur": "green",
+      "Kasaragod": "green",
+      "Kollam": "green",
+      "Kottayam": "yellow",
+      "Kozhikode": "green",
+      "Malappuram": "green",
+      "Palakkad": "yellow",
+      "Pathanamthitta": "yellow",
+      "Thiruvananthapuram": "green",
+      "Thrissur": "yellow",
+      "Wayanad": "green"
+    }
+  },
+  "scraped_at": "2026-07-17T11:53:39.729481+05:30"
 }
