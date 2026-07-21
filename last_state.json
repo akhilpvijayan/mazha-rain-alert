@@ -28,8 +28,8 @@
     "Alappuzha": "green",
     "Ernakulam": "green",
     "Idukki": "green",
-    "Kannur": "yellow",
-    "Kasaragod": "yellow",
+    "Kannur": "green",
+    "Kasaragod": "green",
     "Kollam": "green",
     "Kottayam": "green",
     "Kozhikode": "green",
@@ -58,5 +58,5 @@
       "Wayanad": "green"
     }
   },
-  "scraped_at": "2026-07-21T23:07:21.657713+05:30"
+  "scraped_at": "2026-07-22T01:13:07.537726+05:30"
 }
