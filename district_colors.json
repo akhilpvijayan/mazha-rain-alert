@@ -1,12 +1,12 @@
 {
-  "scraped_at": "2026-07-21T12:06:02.071498+05:30",
+  "scraped_at": "2026-07-21T16:01:14.651711+05:30",
   "date": "2026-07-21",
   "colors": {
     "Alappuzha": "green",
     "Ernakulam": "green",
     "Idukki": "green",
-    "Kannur": "green",
-    "Kasaragod": "green",
+    "Kannur": "yellow",
+    "Kasaragod": "yellow",
     "Kollam": "green",
     "Kottayam": "green",
     "Kozhikode": "green",
