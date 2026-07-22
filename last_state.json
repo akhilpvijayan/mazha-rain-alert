@@ -53,13 +53,13 @@
     "Kasaragod": "yellow",
     "Kollam": "green",
     "Kottayam": "green",
-    "Kozhikode": "yellow",
+    "Kozhikode": "green",
     "Malappuram": "green",
     "Palakkad": "green",
     "Pathanamthitta": "green",
     "Thiruvananthapuram": "green",
     "Thrissur": "green",
-    "Wayanad": "yellow"
+    "Wayanad": "green"
   },
   "forecast_colors": {
     "2026-07-22": {
@@ -95,5 +95,5 @@
       "Wayanad": "green"
     }
   },
-  "scraped_at": "2026-07-22T22:56:53.907717+05:30"
+  "scraped_at": "2026-07-23T01:07:33.833550+05:30"
 }
