@@ -404,14 +404,30 @@ def build_district_alert_map(data: dict) -> dict:
 ALL_DISTRICTS_EN = sorted(DISTRICT_MAP.values())
 
 
-def build_district_colors(data: dict) -> dict:
+def build_district_colors(data: dict, target_date: str | None = None) -> dict:
     """Simple flat map for coloring mazha.live's district map:
     { "Kozhikode": "red", "Wayanad": "red", "Ernakulam": "yellow", ...,
       "Kollam": "green" }  <- green = no active alert
     Every one of the 14 Kerala districts is always included, so the map
     always has a color to render, even on a clear day.
+
+    IMPORTANT: `data` (e.g. from enrich_and_validate) can contain entries
+    for several different dates at once — the IMD block alone gives a
+    5-day forecast. Blending all of those together would show a district
+    as "yellow" today even if its alert is only for two days from now.
+    So this only colors a district based on alerts whose `date` matches
+    `target_date` (defaults to today, IST). The full multi-day picture is
+    still available via build_district_alert_map(data) / the saved
+    "alerts" list, this function just answers "what's active right now".
     """
-    district_map = build_district_alert_map(data)  # e.g. {"Kozhikode": ["red", "yellow"]}
+    if target_date is None:
+        target_date = datetime.now(IST).strftime("%Y-%m-%d")
+
+    todays_data = {
+        level: [entry for entry in data.get(level, []) if entry.get("date") == target_date]
+        for level in VALID_LEVELS
+    }
+    district_map = build_district_alert_map(todays_data)  # e.g. {"Kozhikode": ["red", "yellow"]}
     colors = {}
     for district in ALL_DISTRICTS_EN:
         levels = district_map.get(district)
