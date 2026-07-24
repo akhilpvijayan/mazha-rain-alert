@@ -5,16 +5,16 @@
     "Alappuzha": "green",
     "Ernakulam": "green",
     "Idukki": "green",
-    "Kannur": "green",
-    "Kasaragod": "green",
+    "Kannur": "yellow",
+    "Kasaragod": "yellow",
     "Kollam": "green",
     "Kottayam": "green",
-    "Kozhikode": "green",
-    "Malappuram": "green",
+    "Kozhikode": "yellow",
+    "Malappuram": "yellow",
     "Palakkad": "green",
     "Pathanamthitta": "green",
     "Thiruvananthapuram": "green",
     "Thrissur": "green",
-    "Wayanad": "green"
+    "Wayanad": "yellow"
   }
 }
