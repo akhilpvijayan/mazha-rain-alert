@@ -2,38 +2,9 @@
   "alerts": {
     "red": [],
     "orange": [],
-    "yellow": [
-      {
-        "date": "2026-07-23",
-        "districts_ml": [
-          "കോഴിക്കോട്",
-          "വയനാട്",
-          "കണ്ണൂർ",
-          "കാസറഗോഡ്"
-        ],
-        "districts_en": [
-          "Kozhikode",
-          "Wayanad",
-          "Kannur",
-          "Kasaragod"
-        ]
-      }
-    ]
+    "yellow": []
   },
-  "district_alert_map": {
-    "Kozhikode": [
-      "yellow"
-    ],
-    "Wayanad": [
-      "yellow"
-    ],
-    "Kannur": [
-      "yellow"
-    ],
-    "Kasaragod": [
-      "yellow"
-    ]
-  },
+  "district_alert_map": {},
   "district_colors": {
     "Alappuzha": "green",
     "Ernakulam": "green",
@@ -50,23 +21,6 @@
     "Thrissur": "green",
     "Wayanad": "green"
   },
-  "forecast_colors": {
-    "2026-07-23": {
-      "Alappuzha": "green",
-      "Ernakulam": "green",
-      "Idukki": "green",
-      "Kannur": "yellow",
-      "Kasaragod": "yellow",
-      "Kollam": "green",
-      "Kottayam": "green",
-      "Kozhikode": "yellow",
-      "Malappuram": "green",
-      "Palakkad": "green",
-      "Pathanamthitta": "green",
-      "Thiruvananthapuram": "green",
-      "Thrissur": "green",
-      "Wayanad": "yellow"
-    }
-  },
-  "scraped_at": "2026-07-24T12:03:57.458002+05:30"
+  "forecast_colors": {},
+  "scraped_at": "2026-07-24T15:56:06.651116+05:30"
 }
