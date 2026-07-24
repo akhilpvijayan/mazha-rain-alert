@@ -10,9 +10,12 @@ Pipeline:
   2. Try Gemini LLM extraction first (handles messy/inconsistent formatting)
   3. Fall back to Groq if Gemini fails or isn't configured
   4. Fall back to regex extraction if both LLMs fail
-  5. Validate districts against known Kerala district list
-  6. Diff against last saved state -> report new alerts
-  7. Save current state for next run
+  5. ALSO run a dedicated regex pass for the IMD 5-day forecast block
+     (a differently-worded paragraph KSDMA embeds alongside its own
+     alert listing) and merge it in, however extraction happened above
+  6. Validate districts against known Kerala district list
+  7. Diff against last saved state -> report new alerts
+  8. Save current state for next run
 
 Usage:
   export GEMINI_API_KEY="your_key_here"   # primary  - aistudio.google.com
@@ -123,6 +126,10 @@ Schema:
 Rules:
 - Only include entries that are explicitly about rainfall alerts (Red/Orange/Yellow),
   ignore unrelated page content (menus, footers, links).
+- This includes both KSDMA's own alert listing AND any IMD (Indian
+  Meteorological Department / "കേന്ദ്ര കാലാവസ്ഥ വകുപ്പ്") 5-day forecast
+  alert block on the page — extract alerts from both sources into the
+  same schema.
 - date must be in DD/MM/YYYY as written in source, converted to YYYY-MM-DD.
 - districts_ml must be the exact Malayalam district names as written in the source text.
 - If a section (red/orange/yellow) has no entries, return an empty list for it.
@@ -181,16 +188,28 @@ def extract_with_groq(raw_text: str) -> dict | None:
 # 3. Regex fallback extraction
 # ---------------------------------------------------------------------------
 
+def _is_level_declaration_line(clean: str) -> bool:
+    return any(kw in clean for keywords in ALERT_KEYWORDS.values() for kw in keywords)
+
+
 def extract_with_regex(raw_text: str) -> dict:
     """Line-by-line scan: track the most recently seen alert-level keyword,
-    then attach any date:districts line found after it to that level."""
+    then attach any date:districts line found after it to that level.
+
+    NOTE: kept exactly as before, PLUS added lookahead support for the case
+    where the source splits "DD/MM/YYYY :" and its district list across two
+    separate lines (as the live KSDMA page does), instead of always having
+    them on one line."""
     result = {level: [] for level in VALID_LEVELS}
     current_level = "yellow"  # KSDMA defaults to yellow context if no explicit marker yet
 
-    date_line_re = re.compile(r"(\d{2}/\d{2}/\d{4})\s*:?\s*(.+)")
+    date_line_re = re.compile(r"(\d{2}/\d{2}/\d{4})\s*:?\s*(.*)")
 
-    for line in raw_text.split("\n"):
-        clean = line.strip().strip("*").strip()
+    lines = raw_text.split("\n")
+    i = 0
+    while i < len(lines):
+        clean = lines[i].strip().strip("*").strip()
+        i += 1
         if not clean:
             continue
 
@@ -208,6 +227,14 @@ def extract_with_regex(raw_text: str) -> dict:
         m = date_line_re.match(clean)
         if m:
             date_str, district_blob = m.groups()
+            district_blob = district_blob.strip()
+            # Added: if the date line has nothing after it (e.g. "24/07/2026 :"
+            # on its own), the district list is likely on the next line.
+            if not district_blob and i < len(lines):
+                next_line = lines[i].strip()
+                if next_line and not date_line_re.match(next_line) and not _is_level_declaration_line(next_line):
+                    district_blob = next_line
+                    i += 1
             try:
                 date_obj = datetime.strptime(date_str, "%d/%m/%Y")
             except ValueError:
@@ -222,6 +249,109 @@ def extract_with_regex(raw_text: str) -> dict:
                 })
 
     return result
+
+
+# ---------------------------------------------------------------------------
+# 3b. IMD 5-day forecast block extraction (additive, additional regex pass)
+# ---------------------------------------------------------------------------
+#
+# KSDMA also embeds a separate "IMD / കേന്ദ്ര കാലാവസ്ഥ വകുപ്പ്" 5-day
+# rainfall-forecast block on the page, worded differently from its own
+# alert listing, e.g.:
+#
+#   Rainfall
+#   കേന്ദ്ര കാലാവസ്ഥ വകുപ്പിന്റെ അടുത്ത 5 ദിവസത്തേക്കുള്ള മഴ സാധ്യത പ്രവചനം
+#   വിവിധ ജില്ലകളിൽ കേന്ദ്ര കാലാവസ്ഥ വകുപ്പ് മഞ്ഞ (Yellow) അലർട്ട് പ്രഖ്യാപിച്ചിരിക്കുന്നു.
+#   24/07/2026 : മലപ്പുറം, കോഴിക്കോട്, വയനാട്, കണ്ണൂർ, കാസറഗോഡ്
+#   25/07/2026 : കണ്ണൂർ, കാസറഗോഡ്
+#   ...
+#   എന്നീ ജില്ലകളിലാണ്...
+#
+# This block states its color level explicitly in the same sentence as the
+# "അലർട്ട് പ്രഖ്യാപിച്ചിരിക്കുന്നു" (alert declared) phrase, via an English
+# color word in parentheses, e.g. "(Yellow)". This function locates that
+# sentence, then reads forward through the "DD/MM/YYYY : district, district"
+# lines that follow it (same format as the main KSDMA listing), stopping as
+# soon as a non-date line breaks the run.
+#
+# This is purely additive: it does NOT touch extract_with_regex above and
+# is meant to be merged in via merge_extraction_results() regardless of
+# whether Gemini, Groq, or the main regex pass was used, since any of them
+# might miss/misclassify this differently-worded IMD block.
+
+IMD_HEADER_RE = re.compile(
+    r"കേന്ദ്ര\s*കാലാവസ്ഥ\s*വകുപ്പ്.*?\((Red|Orange|Yellow)\)\s*അലർട്ട്",
+    re.IGNORECASE,
+)
+IMD_DATE_LINE_RE = re.compile(r"(\d{2}/\d{2}/\d{4})\s*:?\s*(.*)")
+
+
+def extract_imd_forecast_block(raw_text: str) -> dict:
+    result = {level: [] for level in VALID_LEVELS}
+    lines = raw_text.split("\n")
+
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        header_match = IMD_HEADER_RE.search(line)
+        if header_match:
+            level = header_match.group(1).lower()
+            j = i + 1
+            while j < len(lines):
+                candidate = lines[j].strip().strip("*").strip()
+                if not candidate:
+                    j += 1
+                    continue
+                m = IMD_DATE_LINE_RE.match(candidate)
+                if not m:
+                    break  # end of this date-list block
+                date_str, district_blob = m.groups()
+                district_blob = district_blob.strip()
+                j += 1
+                # Added: date and district list may be split across two
+                # lines on the live page (e.g. "24/07/2026 :" then the
+                # district names on the next line).
+                if not district_blob and j < len(lines):
+                    next_line = lines[j].strip()
+                    if next_line and not IMD_DATE_LINE_RE.match(next_line) and not _is_level_declaration_line(next_line):
+                        district_blob = next_line
+                        j += 1
+                try:
+                    date_obj = datetime.strptime(date_str, "%d/%m/%Y")
+                except ValueError:
+                    continue
+                districts_ml = [d.strip() for d in re.split(r"[,،]", district_blob) if d.strip()]
+                districts_ml = [d for d in districts_ml if d in DISTRICT_MAP]
+                if districts_ml:
+                    result[level].append({
+                        "date": date_obj.strftime("%Y-%m-%d"),
+                        "districts_ml": districts_ml,
+                    })
+            i = j
+            continue
+        i += 1
+
+    return result
+
+
+def merge_extraction_results(*results: dict) -> dict:
+    """Merge multiple {level: [entries]} dicts (e.g. LLM/regex output plus
+    the IMD-forecast pass), de-duplicating identical (level, date,
+    districts_ml) entries so the same alert isn't double-counted if more
+    than one pass happens to pick it up."""
+    merged = {level: [] for level in VALID_LEVELS}
+    seen = set()
+    for res in results:
+        if not res:
+            continue
+        for level in VALID_LEVELS:
+            for entry in res.get(level, []):
+                key = (level, entry.get("date"), tuple(sorted(entry.get("districts_ml", []))))
+                if key in seen:
+                    continue
+                seen.add(key)
+                merged[level].append(entry)
+    return merged
 
 
 # ---------------------------------------------------------------------------
@@ -274,52 +404,19 @@ def build_district_alert_map(data: dict) -> dict:
 ALL_DISTRICTS_EN = sorted(DISTRICT_MAP.values())
 
 
-def build_district_colors(data: dict, target_date: str | None = None) -> dict:
-    """Simple flat map for coloring mazha.live's district map, filtered to a
-    SPECIFIC date (defaults to today, IST) so a downgrade/upgrade forecast
-    for a future day doesn't get conflated with today's actual alert level.
-
-    e.g. if Kozhikode is Red on 08/07 but only Yellow on 09/07, calling this
-    with target_date="2026-07-08" correctly returns "red" for Kozhikode,
-    and calling it with "2026-07-09" correctly returns "yellow" instead.
-
-    Every one of the 14 Kerala districts is always included, defaulting to
-    "green" if no alert is listed for that district on that date.
+def build_district_colors(data: dict) -> dict:
+    """Simple flat map for coloring mazha.live's district map:
+    { "Kozhikode": "red", "Wayanad": "red", "Ernakulam": "yellow", ...,
+      "Kollam": "green" }  <- green = no active alert
+    Every one of the 14 Kerala districts is always included, so the map
+    always has a color to render, even on a clear day.
     """
-    if target_date is None:
-        target_date = datetime.now(IST).strftime("%Y-%m-%d")
-
-    # Build per-district severity set, but only from entries matching target_date
-    district_levels = {}
-    for level in VALID_LEVELS:
-        for entry in data.get(level, []):
-            if entry["date"] != target_date:
-                continue
-            for d in entry["districts_en"]:
-                district_levels.setdefault(d, set()).add(level)
-
+    district_map = build_district_alert_map(data)  # e.g. {"Kozhikode": ["red", "yellow"]}
     colors = {}
     for district in ALL_DISTRICTS_EN:
-        levels = district_levels.get(district)
-        if levels:
-            # pick highest severity among same-date entries (red > orange > yellow)
-            highest = sorted(levels, key=lambda l: VALID_LEVELS.index(l))[0]
-            colors[district] = highest
-        else:
-            colors[district] = "green"
+        levels = district_map.get(district)
+        colors[district] = levels[0] if levels else "green"  # levels[0] = highest severity (red > orange > yellow)
     return colors
-
-
-def build_forecast_colors(data: dict) -> dict:
-    """Same as build_district_colors but returns a map of
-    { date: { district: color } } for every date present in the bulletin —
-    useful if you ever want a 'next few days' view instead of just today."""
-    all_dates = set()
-    for level in VALID_LEVELS:
-        for entry in data.get(level, []):
-            all_dates.add(entry["date"])
-
-    return {d: build_district_colors(data, target_date=d) for d in sorted(all_dates)}
 
 
 # ---------------------------------------------------------------------------
@@ -356,8 +453,7 @@ COLORS_FILE = os.path.join(os.path.dirname(__file__), "district_colors.json")
 
 
 def save_state(current: dict):
-    colors = build_district_colors(current)  # today only
-    forecast = build_forecast_colors(current)  # all dates in bulletin
+    colors = build_district_colors(current)
     scraped_at = datetime.now(IST).isoformat()
 
     with open(STATE_FILE, "w", encoding="utf-8") as f:
@@ -365,7 +461,6 @@ def save_state(current: dict):
             "alerts": current,
             "district_alert_map": build_district_alert_map(current),
             "district_colors": colors,
-            "forecast_colors": forecast,
             "scraped_at": scraped_at,
         }, f, ensure_ascii=False, indent=2)
 
@@ -373,7 +468,6 @@ def save_state(current: dict):
     with open(COLORS_FILE, "w", encoding="utf-8") as f:
         json.dump({
             "scraped_at": scraped_at,
-            "date": datetime.now(IST).strftime("%Y-%m-%d"),
             "colors": colors,
         }, f, ensure_ascii=False, indent=2)
 
@@ -386,6 +480,11 @@ def run():
     print(f"[info] Fetching {KSDMA_URL} ...")
     html = fetch_page(KSDMA_URL)
     raw_text = extract_main_text(html)
+
+    print("\n=== DEBUG: raw_text length ===")
+    print(len(raw_text))
+    print("\n=== DEBUG: raw_text (first 3000 chars) ===")
+    print(raw_text[:3000])
 
     extracted = extract_with_gemini(raw_text)
     used_method = "gemini"
@@ -400,13 +499,22 @@ def run():
         extracted = extract_with_regex(raw_text)
         used_method = "regex"
 
+    # Additive pass: pick up the IMD 5-day forecast block regardless of
+    # which method above ran, then merge (with de-dup) into `extracted`.
+    imd_extra = extract_imd_forecast_block(raw_text)
+    if any(imd_extra[level] for level in VALID_LEVELS):
+        print(f"[info] IMD forecast block found ({used_method} was primary method), merging in.")
+    extracted = merge_extraction_results(extracted, imd_extra)
+
+    print("\n=== DEBUG: extracted (before enrichment) ===")
+    print(json.dumps(extracted, ensure_ascii=False, indent=2))
+
     validated = enrich_and_validate(extracted)
     colors = build_district_colors(validated)
 
     previous = load_previous_state()
     new_alerts = find_new_alerts(previous, validated)
 
-    # ---- This is the simple output for coloring your map ----
     print("\n=== District colors (for map) ===")
     print(json.dumps(colors, ensure_ascii=False, indent=2))
 
@@ -415,11 +523,6 @@ def run():
         for a in new_alerts:
             districts = ", ".join(a["districts_en"])
             print(f"  -> {a['level'].upper()} | {a['date']} | {districts}")
-        try:
-            from fcm_notifier import send_alert_notification
-            send_alert_notification(new_alerts)
-        except Exception as e:
-            print(f"[warn] Could not send push notification: {e}")
     else:
         print("\n[info] No new alerts since last run.")
 
