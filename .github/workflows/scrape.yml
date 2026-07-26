@@ -2,7 +2,7 @@ name: KSDMA Rainfall Scraper
 
 on:
   schedule:
-    - cron: '0 */2 * * *'   # every 2 hours
+    - cron: '0 */1 * * *'   # every 2 hours
   workflow_dispatch:         # lets you manually trigger a run from GitHub's UI
 
 permissions:
