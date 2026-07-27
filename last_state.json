@@ -148,14 +148,14 @@
     "Kannur": "yellow",
     "Kasaragod": "yellow",
     "Kollam": "green",
-    "Kottayam": "yellow",
+    "Kottayam": "green",
     "Kozhikode": "yellow",
     "Malappuram": "yellow",
     "Palakkad": "green",
     "Pathanamthitta": "green",
     "Thiruvananthapuram": "green",
-    "Thrissur": "green",
-    "Wayanad": "yellow"
+    "Thrissur": "yellow",
+    "Wayanad": "green"
   },
-  "scraped_at": "2026-07-27T22:55:40.046068+05:30"
+  "scraped_at": "2026-07-28T00:35:18.383715+05:30"
 }
