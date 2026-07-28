@@ -1,7 +1,7 @@
 {
-  "scraped_at": "2026-07-28T22:44:47.343482+05:30",
+  "scraped_at": "2026-07-29T00:30:38.226122+05:30",
   "colors": {
-    "Alappuzha": "yellow",
+    "Alappuzha": "green",
     "Ernakulam": "yellow",
     "Idukki": "green",
     "Kannur": "yellow",
@@ -9,9 +9,9 @@
     "Kollam": "green",
     "Kottayam": "yellow",
     "Kozhikode": "yellow",
-    "Malappuram": "yellow",
-    "Palakkad": "yellow",
-    "Pathanamthitta": "green",
+    "Malappuram": "green",
+    "Palakkad": "green",
+    "Pathanamthitta": "yellow",
     "Thiruvananthapuram": "green",
     "Thrissur": "green",
     "Wayanad": "yellow"
