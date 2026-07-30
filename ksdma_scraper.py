@@ -194,23 +194,20 @@ def _is_level_declaration_line(clean: str) -> bool:
 
 def extract_with_regex(raw_text: str) -> dict:
     """Line-by-line scan: track the most recently seen alert-level keyword,
-    then attach any date:districts line found after it to that level.
-
-    NOTE: kept exactly as before, PLUS added lookahead support for the case
-    where the source splits "DD/MM/YYYY :" and its district list across two
-    separate lines (as the live KSDMA page does), instead of always having
-    them on one line."""
+    then attach any date:districts entry to that level. Handles BOTH real
+    page structures seen in production:
+      1. "DATE : districts" combined on one line
+      2. "DATE :" alone, with districts wrapping to the next line
+    """
     result = {level: [] for level in VALID_LEVELS}
     current_level = "yellow"  # KSDMA defaults to yellow context if no explicit marker yet
-
-    date_line_re = re.compile(r"(\d{2}/\d{2}/\d{4})\s*:?\s*(.*)")
 
     lines = raw_text.split("\n")
     i = 0
     while i < len(lines):
         clean = lines[i].strip().strip("*").strip()
-        i += 1
         if not clean:
+            i += 1
             continue
 
         # Check if this line declares an alert level
@@ -221,35 +218,42 @@ def extract_with_regex(raw_text: str) -> dict:
                 break
         if matched_level:
             current_level = matched_level
+            i += 1
             continue
 
-        # Check if this line is a date:districts entry
-        m = date_line_re.match(clean)
-        if m:
-            date_str, district_blob = m.groups()
-            district_blob = district_blob.strip()
-            # Added: if the date line has nothing after it (e.g. "24/07/2026 :"
-            # on its own), the district list is likely on the next line.
-            if not district_blob and i < len(lines):
-                next_line = lines[i].strip()
-                if next_line and not date_line_re.match(next_line) and not _is_level_declaration_line(next_line):
-                    district_blob = next_line
-                    i += 1
-            try:
-                date_obj = datetime.strptime(date_str, "%d/%m/%Y")
-            except ValueError:
+        # Case 1: "date : districts" combined on one line
+        m_combined = re.match(r"^(\d{2}/\d{2}/\d{4})\s*:\s*(.+)$", clean)
+        if m_combined and m_combined.group(2).strip():
+            date_str, district_blob = m_combined.groups()
+            i += 1
+        else:
+            # Case 2: "date :" alone, districts on the NEXT non-empty line
+            m_date_only = re.match(r"^(\d{2}/\d{2}/\d{4})\s*:?\s*$", clean)
+            if m_date_only:
+                date_str = m_date_only.group(1)
+                j = i + 1
+                while j < len(lines) and not lines[j].strip():
+                    j += 1
+                district_blob = lines[j].strip() if j < len(lines) else ""
+                i = j + 1
+            else:
+                i += 1
                 continue
-            districts_ml = [d.strip() for d in re.split(r"[,،]", district_blob) if d.strip()]
-            # Filter to only known districts (avoids picking up unrelated text)
-            districts_ml = [d for d in districts_ml if d in DISTRICT_MAP]
-            if districts_ml:
-                result[current_level].append({
-                    "date": date_obj.strftime("%Y-%m-%d"),
-                    "districts_ml": districts_ml,
-                })
+
+        try:
+            date_obj = datetime.strptime(date_str, "%d/%m/%Y")
+        except ValueError:
+            continue
+
+        districts_ml = [d.strip() for d in re.split(r"[,،]", district_blob) if d.strip()]
+        districts_ml = [d for d in districts_ml if d in DISTRICT_MAP]
+        if districts_ml:
+            result[current_level].append({
+                "date": date_obj.strftime("%Y-%m-%d"),
+                "districts_ml": districts_ml,
+            })
 
     return result
-
 
 # ---------------------------------------------------------------------------
 # 3b. IMD 5-day forecast block extraction (additive, additional regex pass)
