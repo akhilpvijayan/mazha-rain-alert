@@ -194,10 +194,13 @@ def _is_level_declaration_line(clean: str) -> bool:
 
 def extract_with_regex(raw_text: str) -> dict:
     """Line-by-line scan: track the most recently seen alert-level keyword,
-    then attach any date:districts entry to that level. Handles BOTH real
+    then attach any date:districts entry to that level. Handles all real
     page structures seen in production:
       1. "DATE : districts" combined on one line
       2. "DATE :" alone, with districts wrapping to the next line
+      3. Header text and the first date entry merged onto the SAME line
+         (e.g. "ഓറഞ്ച് അലർട്ട് 30/07/2026: districts...") - a level-keyword
+         match no longer skips the rest of that line's processing.
     """
     result = {level: [] for level in VALID_LEVELS}
     current_level = "yellow"  # KSDMA defaults to yellow context if no explicit marker yet
@@ -210,35 +213,38 @@ def extract_with_regex(raw_text: str) -> dict:
             i += 1
             continue
 
-        # Check if this line declares an alert level
-        matched_level = None
+        # Update current_level if this line mentions one - but DON'T skip
+        # the rest of processing, since the date data might be on this
+        # same line (header + first entry merged by the HTML extraction).
         for level, keywords in ALERT_KEYWORDS.items():
             if any(kw in clean for kw in keywords):
-                matched_level = level
+                current_level = level
                 break
-        if matched_level:
-            current_level = matched_level
-            i += 1
-            continue
 
-        # Case 1: "date : districts" combined on one line
+        # Case 1: "date : districts" combined, date at start of line
         m_combined = re.match(r"^(\d{2}/\d{2}/\d{4})\s*:\s*(.+)$", clean)
         if m_combined and m_combined.group(2).strip():
             date_str, district_blob = m_combined.groups()
             i += 1
         else:
-            # Case 2: "date :" alone, districts on the NEXT non-empty line
-            m_date_only = re.match(r"^(\d{2}/\d{2}/\d{4})\s*:?\s*$", clean)
-            if m_date_only:
-                date_str = m_date_only.group(1)
-                j = i + 1
-                while j < len(lines) and not lines[j].strip():
-                    j += 1
-                district_blob = lines[j].strip() if j < len(lines) else ""
-                i = j + 1
-            else:
+            # Case 2: header text + date embedded later in the same line
+            m_embedded = re.search(r"(\d{2}/\d{2}/\d{4})\s*:\s*(.+)$", clean)
+            if m_embedded and m_embedded.group(2).strip():
+                date_str, district_blob = m_embedded.groups()
                 i += 1
-                continue
+            else:
+                # Case 3: "date :" alone, districts on the NEXT non-empty line
+                m_date_only = re.match(r"^(\d{2}/\d{2}/\d{4})\s*:?\s*$", clean)
+                if m_date_only:
+                    date_str = m_date_only.group(1)
+                    j = i + 1
+                    while j < len(lines) and not lines[j].strip():
+                        j += 1
+                    district_blob = lines[j].strip() if j < len(lines) else ""
+                    i = j + 1
+                else:
+                    i += 1
+                    continue
 
         try:
             date_obj = datetime.strptime(date_str, "%d/%m/%Y")
