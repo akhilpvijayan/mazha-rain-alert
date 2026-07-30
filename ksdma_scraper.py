@@ -507,32 +507,25 @@ def run():
     html = fetch_page(KSDMA_URL)
     raw_text = extract_main_text(html)
 
-    print("\n=== DEBUG: raw_text length ===")
-    print(len(raw_text))
-    print("\n=== DEBUG: raw_text (first 3000 chars) ===")
-    print(raw_text[:3000])
+    print("\n" + "="*60)
+    print("DEBUG: FULL raw_text (every line, numbered)")
+    print("="*60)
+    for idx, line in enumerate(raw_text.split("\n")):
+        print(f"{idx:3d}: {repr(line)}")
 
     extracted = extract_with_gemini(raw_text)
     used_method = "gemini"
-
     if extracted is None:
-        print("[info] Gemini unavailable, trying Groq...")
         extracted = extract_with_groq(raw_text)
         used_method = "groq"
-
     if extracted is None:
-        print("[info] Both LLMs unavailable, falling back to regex extraction.")
         extracted = extract_with_regex(raw_text)
         used_method = "regex"
 
-    # Additive pass: pick up the IMD 5-day forecast block regardless of
-    # which method above ran, then merge (with de-dup) into `extracted`.
-    imd_extra = extract_imd_forecast_block(raw_text)
-    if any(imd_extra[level] for level in VALID_LEVELS):
-        print(f"[info] IMD forecast block found ({used_method} was primary method), merging in.")
-    extracted = merge_extraction_results(extracted, imd_extra)
-
-    print("\n=== DEBUG: extracted (before enrichment) ===")
+    print("\n" + "="*60)
+    print(f"DEBUG: extraction method used = {used_method}")
+    print("DEBUG: extracted (before enrichment)")
+    print("="*60)
     print(json.dumps(extracted, ensure_ascii=False, indent=2))
 
     validated = enrich_and_validate(extracted)
