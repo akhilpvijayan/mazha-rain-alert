@@ -61,6 +61,7 @@ DISTRICT_MAP = {
     "ഇടുക്കി": "Idukki",
     "എറണാകുളം": "Ernakulam",
     "തൃശൂർ": "Thrissur",
+    "തൃശ്ശൂർ": "Thrissur",  # alternate spelling KSDMA itself uses inconsistently (extra ശ)
     "പാലക്കാട്": "Palakkad",
     "മലപ്പുറം": "Malappuram",
     "കോഴിക്കോട്": "Kozhikode",
@@ -420,23 +421,36 @@ def build_district_colors(data: dict, target_date: str | None = None) -> dict:
     build_district_alert_map(data) / the saved "alerts" list, this
     function just answers "what's active right now".
 
-    target_date default: rather than trusting the local wall clock (which
-    can drift a day out of sync with KSDMA's own published forecast —
-    e.g. the machine's clock says the 25th while the page has already
-    published its forecast for the 26th–30th), default to the EARLIEST
-    date actually present across all scraped entries. That's effectively
-    "day 1" of whatever forecast KSDMA just published, which is the
-    correct definition of "today" from the source's point of view. Falls
-    back to the local IST date only if no entries were scraped at all.
+    target_date default (when not explicitly passed):
+      1. If the wall-clock date (IST) has an entry in the scraped data,
+         use it — this is the normal case, showing today's actual alert.
+      2. Else, if the wall-clock date is BEFORE every date in the data
+         (the forecast was just published slightly ahead of schedule, or
+         the local clock is a little behind), use the EARLIEST upcoming
+         date present — i.e. "day 1" of the forecast.
+      3. Else (the wall-clock date is AFTER every date in the data — the
+         whole forecast has expired/gone stale), use the wall-clock date
+         as-is. It won't match anything, so every district correctly
+         comes back "green" rather than showing a leftover alert from a
+         forecast that's no longer current.
+    This avoids two failure modes seen before: always using the earliest
+    published date (which goes stale once that day passes) and always
+    trusting the raw wall clock (which can drift a day out of sync with
+    what KSDMA has actually published).
     """
     if target_date is None:
-        all_dates = [
+        wall_clock_today = datetime.now(IST).strftime("%Y-%m-%d")
+        all_dates = sorted({
             entry.get("date")
             for level in VALID_LEVELS
             for entry in data.get(level, [])
             if entry.get("date")
-        ]
-        target_date = min(all_dates) if all_dates else datetime.now(IST).strftime("%Y-%m-%d")
+        })
+        if wall_clock_today in all_dates:
+            target_date = wall_clock_today
+        else:
+            upcoming = [d for d in all_dates if d >= wall_clock_today]
+            target_date = upcoming[0] if upcoming else wall_clock_today
 
     todays_data = {
         level: [entry for entry in data.get(level, []) if entry.get("date") == target_date]
