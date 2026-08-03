@@ -10,6 +10,8 @@
           "കോട്ടയം",
           "ഇടുക്കി",
           "എറണാകുളം",
+          "തൃശ്ശൂർ",
+          "പാലക്കാട്",
           "മലപ്പുറം",
           "കോഴിക്കോട്",
           "വയനാട്",
@@ -22,6 +24,8 @@
           "Kottayam",
           "Idukki",
           "Ernakulam",
+          "Thrissur",
+          "Palakkad",
           "Malappuram",
           "Kozhikode",
           "Wayanad",
@@ -35,15 +39,11 @@
         "date": "2026-08-03",
         "districts_ml": [
           "തിരുവനന്തപുരം",
-          "കൊല്ലം",
-          "തൃശൂർ",
-          "പാലക്കാട്"
+          "കൊല്ലം"
         ],
         "districts_en": [
           "Thiruvananthapuram",
-          "Kollam",
-          "Thrissur",
-          "Palakkad"
+          "Kollam"
         ]
       },
       {
@@ -150,6 +150,12 @@
       "orange",
       "yellow"
     ],
+    "Thrissur": [
+      "orange"
+    ],
+    "Palakkad": [
+      "orange"
+    ],
     "Malappuram": [
       "orange",
       "yellow"
@@ -175,12 +181,6 @@
     ],
     "Kollam": [
       "yellow"
-    ],
-    "Thrissur": [
-      "yellow"
-    ],
-    "Palakkad": [
-      "yellow"
     ]
   },
   "district_colors": {
@@ -193,11 +193,11 @@
     "Kottayam": "orange",
     "Kozhikode": "orange",
     "Malappuram": "orange",
-    "Palakkad": "yellow",
+    "Palakkad": "orange",
     "Pathanamthitta": "orange",
     "Thiruvananthapuram": "yellow",
-    "Thrissur": "yellow",
+    "Thrissur": "orange",
     "Wayanad": "orange"
   },
-  "scraped_at": "2026-08-03T10:54:42.601086+05:30"
+  "scraped_at": "2026-08-03T14:23:58.416266+05:30"
 }
