@@ -23,6 +23,37 @@ Usage:
   python ksdma_scraper.py
 
 Run this on a schedule (cron / GitHub Actions / cloud function) every 1-2 hours.
+
+---------------------------------------------------------------------------
+CHANGELOG (Aug 2026 bugfix)
+---------------------------------------------------------------------------
+KSDMA started publishing lines with TWO dates joined by '&' before a single
+shared district list, e.g.:
+
+    03/08/2026 & 04/08/2026: പത്തനംതിട്ട, ആലപ്പുഴ, കോട്ടയം, ...
+    03/08/2026 & 04/08/2026: തിരുവനന്തപുരം, കൊല്ലം
+
+The old single-date regex (`(\\d{2}/\\d{2}/\\d{4})\\s*:?\\s*(.*)`) only
+captured the FIRST date; everything after it -- including the literal text
+"& 04/08/2026:" -- was swallowed into the district blob. Since that leading
+"& DD/MM/YYYY:" fragment doesn't exactly match any entry in DISTRICT_MAP,
+whichever district happened to be listed FIRST after it got silently
+dropped (it looked like an unmatched/junk token), and the second date was
+never registered as its own alert entry at all.
+
+Symptoms this caused:
+  - Thiruvananthapuram dropped from the Yellow entry (always listed first
+    in that line).
+  - Pathanamthitta dropped from the Orange entry (always listed first in
+    that line).
+  - Kollam kept showing but only for the first of its two alert dates,
+    so it could flip back to green a day early.
+
+Fix: `parse_date_district_line()` now extracts ALL date tokens on a line
+and treats the text after the LAST date token as the shared district list,
+emitting one entry per date. Both `extract_with_regex()` and
+`extract_imd_forecast_block()` now use this shared helper so the fix
+applies everywhere a date/district line is parsed.
 """
 
 import os
@@ -78,6 +109,14 @@ ALERT_KEYWORDS = {
 
 VALID_LEVELS = ("red", "orange", "yellow")
 
+# Maps bare Malayalam color words -> level, used by both the generic
+# level-declaration check and the IMD-block level heading check.
+IMD_COLOR_ML_MAP = {
+    "റെഡ്": "red",
+    "ഓറഞ്ച്": "orange",
+    "മഞ്ഞ": "yellow",
+}
+
 
 # ---------------------------------------------------------------------------
 # 1. Fetch page
@@ -131,6 +170,9 @@ Rules:
   Meteorological Department / "കേന്ദ്ര കാലാവസ്ഥ വകുപ്പ്") 5-day forecast
   alert block on the page — extract alerts from both sources into the
   same schema.
+- Some lines list TWO dates joined by '&' before a single shared district
+  list (e.g. "03/08/2026 & 04/08/2026: <districts>"). In that case, emit
+  ONE separate entry per date, each with the same districts_ml list.
 - date must be in DD/MM/YYYY as written in source, converted to YYYY-MM-DD.
 - districts_ml must be the exact Malayalam district names as written in the source text.
 - If a section (red/orange/yellow) has no entries, return an empty list for it.
@@ -193,18 +235,49 @@ def _is_level_declaration_line(clean: str) -> bool:
     return any(kw in clean for keywords in ALERT_KEYWORDS.values() for kw in keywords)
 
 
+# Matches a single DD/MM/YYYY date token anywhere in a line. Used (instead
+# of anchoring only at the start of the line) so we can find every date
+# token on lines that list more than one, e.g. "DD/MM/YYYY & DD/MM/YYYY:".
+DATE_TOKEN_RE = re.compile(r"\d{2}/\d{2}/\d{4}")
+
+
+def parse_date_district_line(clean: str):
+    """Parse a line that may contain one or more DD/MM/YYYY date tokens
+    followed by a shared, comma-separated district list, e.g.:
+
+        "24/07/2026 : മലപ്പുറം, കോഴിക്കോട്"                     (single date)
+        "03/08/2026 & 04/08/2026: പത്തനംതിട്ട, ആലപ്പുഴ, ..."   (multi-date)
+
+    Returns (list_of_date_strings, district_blob_text) if at least one date
+    token is found, or (None, None) if the line has no date token at all
+    (i.e. it's not a date/district line, e.g. it's a heading or prose).
+
+    Only text AFTER THE LAST date token is treated as the district blob —
+    this is what fixes the previous bug where, for multi-date lines, the
+    second "& DD/MM/YYYY:" fragment was incorrectly swallowed into the
+    district list, silently dropping whichever district was listed first
+    (since "& DD/MM/YYYY: <first district>" never exactly matches a
+    DISTRICT_MAP entry) and losing the second date as an entry entirely.
+    """
+    matches = list(DATE_TOKEN_RE.finditer(clean))
+    if not matches:
+        return None, None
+    dates = [m.group(0) for m in matches]
+    tail = clean[matches[-1].end():]
+    tail = tail.lstrip(" :&,،")  # strip leading ':' / '&' / whitespace / commas
+    return dates, tail.strip()
+
+
 def extract_with_regex(raw_text: str) -> dict:
     """Line-by-line scan: track the most recently seen alert-level keyword,
     then attach any date:districts line found after it to that level.
 
-    NOTE: kept exactly as before, PLUS added lookahead support for the case
-    where the source splits "DD/MM/YYYY :" and its district list across two
-    separate lines (as the live KSDMA page does), instead of always having
-    them on one line."""
+    Handles both single-date lines and lines with two dates joined by '&'
+    sharing one district list (see parse_date_district_line docstring),
+    as well as the case where the source splits "DD/MM/YYYY :" and its
+    district list across two separate lines."""
     result = {level: [] for level in VALID_LEVELS}
     current_level = "yellow"  # KSDMA defaults to yellow context if no explicit marker yet
-
-    date_line_re = re.compile(r"(\d{2}/\d{2}/\d{4})\s*:?\s*(.*)")
 
     lines = raw_text.split("\n")
     i = 0
@@ -224,30 +297,34 @@ def extract_with_regex(raw_text: str) -> dict:
             current_level = matched_level
             continue
 
-        # Check if this line is a date:districts entry
-        m = date_line_re.match(clean)
-        if m:
-            date_str, district_blob = m.groups()
-            district_blob = district_blob.strip()
-            # Added: if the date line has nothing after it (e.g. "24/07/2026 :"
-            # on its own), the district list is likely on the next line.
-            if not district_blob and i < len(lines):
-                next_line = lines[i].strip()
-                if next_line and not date_line_re.match(next_line) and not _is_level_declaration_line(next_line):
-                    district_blob = next_line
-                    i += 1
+        # Check if this line is a date:districts entry (possibly multi-date)
+        dates, district_blob = parse_date_district_line(clean)
+        if dates is None:
+            continue
+
+        # If the date line has nothing after it (e.g. "24/07/2026 :" on its
+        # own), the district list is likely on the next line.
+        if not district_blob and i < len(lines):
+            next_line = lines[i].strip()
+            if next_line and not DATE_TOKEN_RE.search(next_line) and not _is_level_declaration_line(next_line):
+                district_blob = next_line
+                i += 1
+
+        districts_ml = [d.strip() for d in re.split(r"[,،]", district_blob) if d.strip()]
+        # Filter to only known districts (avoids picking up unrelated text)
+        districts_ml = [d for d in districts_ml if d in DISTRICT_MAP]
+        if not districts_ml:
+            continue
+
+        for date_str in dates:
             try:
                 date_obj = datetime.strptime(date_str, "%d/%m/%Y")
             except ValueError:
                 continue
-            districts_ml = [d.strip() for d in re.split(r"[,،]", district_blob) if d.strip()]
-            # Filter to only known districts (avoids picking up unrelated text)
-            districts_ml = [d for d in districts_ml if d in DISTRICT_MAP]
-            if districts_ml:
-                result[current_level].append({
-                    "date": date_obj.strftime("%Y-%m-%d"),
-                    "districts_ml": districts_ml,
-                })
+            result[current_level].append({
+                "date": date_obj.strftime("%Y-%m-%d"),
+                "districts_ml": districts_ml,
+            })
 
     return result
 
@@ -258,78 +335,104 @@ def extract_with_regex(raw_text: str) -> dict:
 #
 # KSDMA also embeds a separate "IMD / കേന്ദ്ര കാലാവസ്ഥ വകുപ്പ്" 5-day
 # rainfall-forecast block on the page, worded differently from its own
-# alert listing, e.g.:
+# alert listing. This wording has changed over time:
 #
-#   Rainfall
-#   കേന്ദ്ര കാലാവസ്ഥ വകുപ്പിന്റെ അടുത്ത 5 ദിവസത്തേക്കുള്ള മഴ സാധ്യത പ്രവചനം
-#   വിവിധ ജില്ലകളിൽ കേന്ദ്ര കാലാവസ്ഥ വകുപ്പ് മഞ്ഞ (Yellow) അലർട്ട് പ്രഖ്യാപിച്ചിരിക്കുന്നു.
-#   24/07/2026 : മലപ്പുറം, കോഴിക്കോട്, വയനാട്, കണ്ണൂർ, കാസറഗോഡ്
-#   25/07/2026 : കണ്ണൂർ, കാസറഗോഡ്
-#   ...
-#   എന്നീ ജില്ലകളിലാണ്...
+#   OLDER format — the level is named inline, in the same sentence:
+#     "...കാലാവസ്ഥ വകുപ്പ് മഞ്ഞ (Yellow) അലർട്ട് പ്രഖ്യാപിച്ചിരിക്കുന്നു."
+#     24/07/2026 : മലപ്പുറം, കോഴിക്കോട്, വയനാട്, കണ്ണൂർ, കാസറഗോഡ്
+#     25/07/2026 : കണ്ണൂർ, കാസറഗോഡ്
 #
-# This block states its color level explicitly in the same sentence as the
-# "അലർട്ട് പ്രഖ്യാപിച്ചിരിക്കുന്നു" (alert declared) phrase, via an English
-# color word in parentheses, e.g. "(Yellow)". This function locates that
-# sentence, then reads forward through the "DD/MM/YYYY : district, district"
-# lines that follow it (same format as the main KSDMA listing), stopping as
-# soon as a non-date line breaks the run.
+#   CURRENT format (Aug 2026) — a single intro sentence just mentions
+#   "കേന്ദ്ര കാലാവസ്ഥ വകുപ്പ്" once ("...ഓറഞ്ച്, മഞ്ഞ അലർട്ടുകൾ
+#   പ്രഖ്യാപിച്ചിരിക്കുന്നു."), then each level gets its own short plain
+#   Malayalam heading ("ഓറഞ്ച് അലർട്ട്", "മഞ്ഞ അലർട്ട്") with NO English
+#   color word and NOT on the same line as "കേന്ദ്ര കാലാവസ്ഥ വകുപ്പ്" at
+#   all, followed by that level's (possibly multi-date) date/district
+#   lines.
 #
-# This is purely additive: it does NOT touch extract_with_regex above and
-# is meant to be merged in via merge_extraction_results() regardless of
-# whether Gemini, Groq, or the main regex pass was used, since any of them
-# might miss/misclassify this differently-worded IMD block.
+# To handle both without over-fitting to either, this function:
+#   1. Confirms an IMD section exists by finding the first line mentioning
+#      "കേന്ദ്ര കാലാവസ്ഥ വകുപ്പ്".
+#   2. From there, scans forward for ANY level-heading line (English
+#      color-in-parens OR a bare Malayalam color word next to "അലർട്ട്"),
+#      sets that as the current level, and reads forward through
+#      consecutive date/district lines using the same
+#      parse_date_district_line() helper the main regex path uses (so
+#      multi-date lines are handled identically here).
+#   3. Switches level whenever a new level-heading line appears, and clears
+#      the current level whenever a non-heading, non-date (i.e. prose) line
+#      is seen, so stray digits in descriptive paragraphs are never
+#      misattributed to a level.
+#
+# Note: on the CURRENT page format, the generic extract_with_regex() pass
+# already picks up "ഓറഞ്ച് അലർട്ട്" / "മഞ്ഞ അലർട്ട്" headings fine on its
+# own (they match ALERT_KEYWORDS directly) — this function is mainly a
+# safety net for the older inline-sentence format. Any overlap between the
+# two passes is de-duplicated by merge_extraction_results().
 
-IMD_HEADER_RE = re.compile(
-    r"കേന്ദ്ര\s*കാലാവസ്ഥ\s*വകുപ്പ്.*?\((Red|Orange|Yellow)\)\s*അലർട്ട്",
+IMD_SECTION_MARKER_RE = re.compile(r"കേന്ദ്ര\s*കാലാവസ്ഥ\s*വകുപ്പ്")
+IMD_LEVEL_LINE_RE = re.compile(
+    r"(?:\((Red|Orange|Yellow)\)|(റെഡ്|ഓറഞ്ച്|മഞ്ഞ))\s*അലർട്ട്",
     re.IGNORECASE,
 )
-IMD_DATE_LINE_RE = re.compile(r"(\d{2}/\d{2}/\d{4})\s*:?\s*(.*)")
 
 
 def extract_imd_forecast_block(raw_text: str) -> dict:
     result = {level: [] for level in VALID_LEVELS}
-    lines = raw_text.split("\n")
+    lines = [ln.strip() for ln in raw_text.split("\n")]
 
-    i = 0
+    imd_start = None
+    for idx, line in enumerate(lines):
+        if IMD_SECTION_MARKER_RE.search(line):
+            imd_start = idx
+            break
+    if imd_start is None:
+        return result  # no IMD section on this page at all
+
+    current_level = None
+    i = imd_start
     while i < len(lines):
-        line = lines[i].strip()
-        header_match = IMD_HEADER_RE.search(line)
-        if header_match:
-            level = header_match.group(1).lower()
-            j = i + 1
-            while j < len(lines):
-                candidate = lines[j].strip().strip("*").strip()
-                if not candidate:
-                    j += 1
-                    continue
-                m = IMD_DATE_LINE_RE.match(candidate)
-                if not m:
-                    break  # end of this date-list block
-                date_str, district_blob = m.groups()
-                district_blob = district_blob.strip()
-                j += 1
-                # Added: date and district list may be split across two
-                # lines on the live page (e.g. "24/07/2026 :" then the
-                # district names on the next line).
-                if not district_blob and j < len(lines):
-                    next_line = lines[j].strip()
-                    if next_line and not IMD_DATE_LINE_RE.match(next_line) and not _is_level_declaration_line(next_line):
-                        district_blob = next_line
-                        j += 1
-                try:
-                    date_obj = datetime.strptime(date_str, "%d/%m/%Y")
-                except ValueError:
-                    continue
-                districts_ml = [d.strip() for d in re.split(r"[,،]", district_blob) if d.strip()]
-                districts_ml = [d for d in districts_ml if d in DISTRICT_MAP]
-                if districts_ml:
-                    result[level].append({
+        line = lines[i].strip("*").strip()
+        if not line:
+            i += 1
+            continue
+
+        level_match = IMD_LEVEL_LINE_RE.search(line)
+        if level_match:
+            color_en, color_ml = level_match.group(1), level_match.group(2)
+            current_level = color_en.lower() if color_en else IMD_COLOR_ML_MAP[color_ml]
+            i += 1
+            continue
+
+        dates, district_blob = parse_date_district_line(line)
+        if dates is not None and current_level is not None:
+            if not district_blob and i + 1 < len(lines):
+                next_line = lines[i + 1].strip()
+                if next_line and not DATE_TOKEN_RE.search(next_line) and not _is_level_declaration_line(next_line):
+                    district_blob = next_line
+                    i += 1
+
+            districts_ml = [d.strip() for d in re.split(r"[,،]", district_blob) if d.strip()]
+            districts_ml = [d for d in districts_ml if d in DISTRICT_MAP]
+            if districts_ml:
+                for date_str in dates:
+                    try:
+                        date_obj = datetime.strptime(date_str, "%d/%m/%Y")
+                    except ValueError:
+                        continue
+                    result[current_level].append({
                         "date": date_obj.strftime("%Y-%m-%d"),
                         "districts_ml": districts_ml,
                     })
-            i = j
+            i += 1
             continue
+
+        # Neither a level heading nor a date line -> we're in descriptive
+        # prose. Clear the current level so stray digits/text in paragraphs
+        # between sections are never misattributed to the previous level.
+        # Scanning continues (rather than stopping) because the page
+        # typically has more level sections further down.
+        current_level = None
         i += 1
 
     return result
