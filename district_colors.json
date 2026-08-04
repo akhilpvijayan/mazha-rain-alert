@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-08-04T12:57:54.301025+05:30",
+  "scraped_at": "2026-08-04T15:31:57.267284+05:30",
   "colors": {
     "Alappuzha": "orange",
     "Ernakulam": "red",
@@ -14,6 +14,6 @@
     "Pathanamthitta": "red",
     "Thiruvananthapuram": "yellow",
     "Thrissur": "orange",
-    "Wayanad": "orange"
+    "Wayanad": "red"
   }
 }
