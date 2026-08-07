@@ -2,54 +2,14 @@
   "alerts": {
     "red": [
       {
-        "date": "2026-08-06",
-        "districts_ml": [
-          "പത്തനംതിട്ട",
-          "കോട്ടയം",
-          "ഇടുക്കി"
-        ],
-        "districts_en": [
-          "Pathanamthitta",
-          "Kottayam",
-          "Idukki"
-        ]
-      }
-    ],
-    "orange": [
-      {
-        "date": "2026-08-06",
-        "districts_ml": [
-          "കൊല്ലം",
-          "ആലപ്പുഴ",
-          "എറണാകുളം",
-          "കണ്ണൂർ",
-          "കാസറഗോഡ്"
-        ],
-        "districts_en": [
-          "Kollam",
-          "Alappuzha",
-          "Ernakulam",
-          "Kannur",
-          "Kasaragod"
-        ]
-      },
-      {
         "date": "2026-08-07",
         "districts_ml": [
-          "പത്തനംതിട്ട",
-          "കോട്ടയം",
-          "ഇടുക്കി",
-          "മലപ്പുറം",
           "കോഴിക്കോട്",
           "വയനാട്",
           "കണ്ണൂർ",
           "കാസറഗോഡ്"
         ],
         "districts_en": [
-          "Pathanamthitta",
-          "Kottayam",
-          "Idukki",
-          "Malappuram",
           "Kozhikode",
           "Wayanad",
           "Kannur",
@@ -57,26 +17,24 @@
         ]
       }
     ],
-    "yellow": [
+    "orange": [
       {
-        "date": "2026-08-06",
+        "date": "2026-08-07",
         "districts_ml": [
-          "തിരുവനന്തപുരം",
-          "തൃശൂർ",
-          "പാലക്കാട്",
-          "മലപ്പുറം",
-          "കോഴിക്കോട്",
-          "വയനാട്"
+          "പത്തനംതിട്ട",
+          "കോട്ടയം",
+          "ഇടുക്കി",
+          "മലപ്പുറം"
         ],
         "districts_en": [
-          "Thiruvananthapuram",
-          "Thrissur",
-          "Palakkad",
-          "Malappuram",
-          "Kozhikode",
-          "Wayanad"
+          "Pathanamthitta",
+          "Kottayam",
+          "Idukki",
+          "Malappuram"
         ]
-      },
+      }
+    ],
+    "yellow": [
       {
         "date": "2026-08-07",
         "districts_ml": [
@@ -100,6 +58,7 @@
         "date": "2026-08-08",
         "districts_ml": [
           "പത്തനംതിട്ട",
+          "ആലപ്പുഴ",
           "കോട്ടയം",
           "എറണാകുളം",
           "ഇടുക്കി",
@@ -111,6 +70,7 @@
         ],
         "districts_en": [
           "Pathanamthitta",
+          "Alappuzha",
           "Kottayam",
           "Ernakulam",
           "Idukki",
@@ -124,38 +84,31 @@
     ]
   },
   "district_alert_map": {
-    "Pathanamthitta": [
+    "Kozhikode": [
       "red",
+      "yellow"
+    ],
+    "Wayanad": [
+      "red",
+      "yellow"
+    ],
+    "Kannur": [
+      "red",
+      "yellow"
+    ],
+    "Kasaragod": [
+      "red",
+      "yellow"
+    ],
+    "Pathanamthitta": [
       "orange",
       "yellow"
     ],
     "Kottayam": [
-      "red",
       "orange",
       "yellow"
     ],
     "Idukki": [
-      "red",
-      "orange",
-      "yellow"
-    ],
-    "Kollam": [
-      "orange",
-      "yellow"
-    ],
-    "Alappuzha": [
-      "orange",
-      "yellow"
-    ],
-    "Ernakulam": [
-      "orange",
-      "yellow"
-    ],
-    "Kannur": [
-      "orange",
-      "yellow"
-    ],
-    "Kasaragod": [
       "orange",
       "yellow"
     ],
@@ -163,15 +116,16 @@
       "orange",
       "yellow"
     ],
-    "Kozhikode": [
-      "orange",
-      "yellow"
-    ],
-    "Wayanad": [
-      "orange",
-      "yellow"
-    ],
     "Thiruvananthapuram": [
+      "yellow"
+    ],
+    "Kollam": [
+      "yellow"
+    ],
+    "Alappuzha": [
+      "yellow"
+    ],
+    "Ernakulam": [
       "yellow"
     ],
     "Thrissur": [
@@ -185,17 +139,17 @@
     "Alappuzha": "yellow",
     "Ernakulam": "yellow",
     "Idukki": "orange",
-    "Kannur": "orange",
-    "Kasaragod": "orange",
+    "Kannur": "red",
+    "Kasaragod": "red",
     "Kollam": "yellow",
     "Kottayam": "orange",
-    "Kozhikode": "orange",
+    "Kozhikode": "red",
     "Malappuram": "orange",
     "Palakkad": "yellow",
     "Pathanamthitta": "orange",
     "Thiruvananthapuram": "yellow",
     "Thrissur": "yellow",
-    "Wayanad": "orange"
+    "Wayanad": "red"
   },
-  "scraped_at": "2026-08-07T13:32:53.766998+05:30"
+  "scraped_at": "2026-08-07T15:15:53.919991+05:30"
 }
