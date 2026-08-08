@@ -1,38 +1,7 @@
 {
   "alerts": {
-    "red": [
-      {
-        "date": "2026-08-07",
-        "districts_ml": [
-          "കോഴിക്കോട്",
-          "വയനാട്",
-          "കണ്ണൂർ",
-          "കാസറഗോഡ്"
-        ],
-        "districts_en": [
-          "Kozhikode",
-          "Wayanad",
-          "Kannur",
-          "Kasaragod"
-        ]
-      }
-    ],
+    "red": [],
     "orange": [
-      {
-        "date": "2026-08-07",
-        "districts_ml": [
-          "പത്തനംതിട്ട",
-          "കോട്ടയം",
-          "ഇടുക്കി",
-          "മലപ്പുറം"
-        ],
-        "districts_en": [
-          "Pathanamthitta",
-          "Kottayam",
-          "Idukki",
-          "Malappuram"
-        ]
-      },
       {
         "date": "2026-08-08",
         "districts_ml": [
@@ -57,75 +26,66 @@
     ],
     "yellow": [
       {
-        "date": "2026-08-07",
-        "districts_ml": [
-          "തിരുവനന്തപുരം",
-          "കൊല്ലം",
-          "ആലപ്പുഴ",
-          "എറണാകുളം",
-          "തൃശൂർ",
-          "പാലക്കാട്"
-        ],
-        "districts_en": [
-          "Thiruvananthapuram",
-          "Kollam",
-          "Alappuzha",
-          "Ernakulam",
-          "Thrissur",
-          "Palakkad"
-        ]
-      },
-      {
         "date": "2026-08-08",
         "districts_ml": [
           "തിരുവനന്തപുരം",
           "കൊല്ലം",
-          "എറണാകുളം",
           "ഇടുക്കി",
+          "എറണാകുളം",
+          "തൃശൂർ",
+          "പാലക്കാട്",
           "മലപ്പുറം"
         ],
         "districts_en": [
           "Thiruvananthapuram",
           "Kollam",
-          "Ernakulam",
           "Idukki",
+          "Ernakulam",
+          "Thrissur",
+          "Palakkad",
           "Malappuram"
+        ]
+      },
+      {
+        "date": "2026-08-09",
+        "districts_ml": [
+          "കോഴിക്കോട്",
+          "വയനാട്",
+          "കണ്ണൂർ",
+          "കാസറഗോഡ്"
+        ],
+        "districts_en": [
+          "Kozhikode",
+          "Wayanad",
+          "Kannur",
+          "Kasaragod"
         ]
       }
     ]
   },
   "district_alert_map": {
-    "Kozhikode": [
-      "red",
-      "orange"
-    ],
-    "Wayanad": [
-      "red",
-      "orange"
-    ],
-    "Kannur": [
-      "red",
-      "orange"
-    ],
-    "Kasaragod": [
-      "red",
-      "orange"
-    ],
     "Pathanamthitta": [
+      "orange"
+    ],
+    "Alappuzha": [
       "orange"
     ],
     "Kottayam": [
       "orange"
     ],
-    "Idukki": [
+    "Kozhikode": [
       "orange",
       "yellow"
     ],
-    "Malappuram": [
+    "Wayanad": [
       "orange",
       "yellow"
     ],
-    "Alappuzha": [
+    "Kannur": [
+      "orange",
+      "yellow"
+    ],
+    "Kasaragod": [
       "orange",
       "yellow"
     ],
@@ -135,6 +95,9 @@
     "Kollam": [
       "yellow"
     ],
+    "Idukki": [
+      "yellow"
+    ],
     "Ernakulam": [
       "yellow"
     ],
@@ -142,6 +105,9 @@
       "yellow"
     ],
     "Palakkad": [
+      "yellow"
+    ],
+    "Malappuram": [
       "yellow"
     ]
   },
@@ -155,11 +121,11 @@
     "Kottayam": "orange",
     "Kozhikode": "orange",
     "Malappuram": "yellow",
-    "Palakkad": "green",
+    "Palakkad": "yellow",
     "Pathanamthitta": "orange",
     "Thiruvananthapuram": "yellow",
-    "Thrissur": "green",
+    "Thrissur": "yellow",
     "Wayanad": "orange"
   },
-  "scraped_at": "2026-08-08T13:08:27.372693+05:30"
+  "scraped_at": "2026-08-08T13:53:37.393890+05:30"
 }
