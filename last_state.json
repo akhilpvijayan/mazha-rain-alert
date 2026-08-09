@@ -52,18 +52,18 @@
   "district_colors": {
     "Alappuzha": "green",
     "Ernakulam": "green",
-    "Idukki": "yellow",
-    "Kannur": "yellow",
-    "Kasaragod": "yellow",
+    "Idukki": "green",
+    "Kannur": "green",
+    "Kasaragod": "green",
     "Kollam": "green",
-    "Kottayam": "yellow",
-    "Kozhikode": "yellow",
+    "Kottayam": "green",
+    "Kozhikode": "green",
     "Malappuram": "green",
     "Palakkad": "green",
-    "Pathanamthitta": "yellow",
+    "Pathanamthitta": "green",
     "Thiruvananthapuram": "green",
     "Thrissur": "green",
-    "Wayanad": "yellow"
+    "Wayanad": "green"
   },
-  "scraped_at": "2026-08-09T23:49:26.755419+05:30"
+  "scraped_at": "2026-08-10T00:52:36.614036+05:30"
 }
