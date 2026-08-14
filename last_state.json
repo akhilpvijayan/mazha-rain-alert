@@ -4,39 +4,20 @@
     "orange": [],
     "yellow": [
       {
-        "date": "2026-08-13",
-        "districts_ml": [
-          "പത്തനംതിട്ട",
-          "കോട്ടയം",
-          "ഇടുക്കി",
-          "എറണാകുളം",
-          "കോഴിക്കോട്",
-          "വയനാട്",
-          "കണ്ണൂർ",
-          "കാസറഗോഡ്"
-        ],
-        "districts_en": [
-          "Pathanamthitta",
-          "Kottayam",
-          "Idukki",
-          "Ernakulam",
-          "Kozhikode",
-          "Wayanad",
-          "Kannur",
-          "Kasaragod"
-        ]
-      },
-      {
         "date": "2026-08-14",
         "districts_ml": [
+          "തിരുവനന്തപുരം",
+          "കൊല്ലം",
           "പത്തനംതിട്ട",
           "ആലപ്പുഴ",
           "കോട്ടയം",
           "ഇടുക്കി",
           "എറണാകുളം",
-          "തൃശ്ശൂർ"
+          "തൃശൂർ"
         ],
         "districts_en": [
+          "Thiruvananthapuram",
+          "Kollam",
           "Pathanamthitta",
           "Alappuzha",
           "Kottayam",
@@ -48,7 +29,16 @@
     ]
   },
   "district_alert_map": {
+    "Thiruvananthapuram": [
+      "yellow"
+    ],
+    "Kollam": [
+      "yellow"
+    ],
     "Pathanamthitta": [
+      "yellow"
+    ],
+    "Alappuzha": [
       "yellow"
     ],
     "Kottayam": [
@@ -58,21 +48,6 @@
       "yellow"
     ],
     "Ernakulam": [
-      "yellow"
-    ],
-    "Kozhikode": [
-      "yellow"
-    ],
-    "Wayanad": [
-      "yellow"
-    ],
-    "Kannur": [
-      "yellow"
-    ],
-    "Kasaragod": [
-      "yellow"
-    ],
-    "Alappuzha": [
       "yellow"
     ],
     "Thrissur": [
@@ -85,15 +60,15 @@
     "Idukki": "yellow",
     "Kannur": "green",
     "Kasaragod": "green",
-    "Kollam": "green",
+    "Kollam": "yellow",
     "Kottayam": "yellow",
     "Kozhikode": "green",
     "Malappuram": "green",
     "Palakkad": "green",
     "Pathanamthitta": "yellow",
-    "Thiruvananthapuram": "green",
+    "Thiruvananthapuram": "yellow",
     "Thrissur": "yellow",
     "Wayanad": "green"
   },
-  "scraped_at": "2026-08-14T12:31:43.353816+05:30"
+  "scraped_at": "2026-08-14T14:23:41.611128+05:30"
 }
