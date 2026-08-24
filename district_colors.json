@@ -1,5 +1,12 @@
 {
-  "scraped_at": "2026-08-24T09:11:28.246043+05:30",
+  "scraped_at": "2026-08-24T09:53:49.916521+05:30",
+  "date": "2026-08-24",
+  "has_data_for_today": true,
+  "available_dates": [
+    "2026-08-23",
+    "2026-08-24",
+    "2026-08-25"
+  ],
   "colors": {
     "Alappuzha": "yellow",
     "Ernakulam": "yellow",
