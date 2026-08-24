@@ -10,7 +10,8 @@
           "തൃശ്ശൂർ",
           "മലപ്പുറം",
           "കോഴിക്കോട്",
-          "വയനാട്"
+          "വയനാട്",
+          "കണ്ണൂർ"
         ],
         "districts_en": [
           "Idukki",
@@ -18,7 +19,8 @@
           "Thrissur",
           "Malappuram",
           "Kozhikode",
-          "Wayanad"
+          "Wayanad",
+          "Kannur"
         ]
       }
     ],
@@ -113,6 +115,10 @@
       "orange",
       "yellow"
     ],
+    "Kannur": [
+      "orange",
+      "yellow"
+    ],
     "Thiruvananthapuram": [
       "yellow"
     ],
@@ -131,9 +137,6 @@
     "Palakkad": [
       "yellow"
     ],
-    "Kannur": [
-      "yellow"
-    ],
     "Kasaragod": [
       "yellow"
     ]
@@ -142,7 +145,7 @@
     "Alappuzha": "yellow",
     "Ernakulam": "orange",
     "Idukki": "orange",
-    "Kannur": "yellow",
+    "Kannur": "orange",
     "Kasaragod": "yellow",
     "Kollam": "yellow",
     "Kottayam": "yellow",
@@ -159,5 +162,5 @@
     "2026-08-25",
     "2026-08-26"
   ],
-  "scraped_at": "2026-08-24T17:49:12.719749+05:30"
+  "scraped_at": "2026-08-24T19:10:00.438973+05:30"
 }
