@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-08-24T20:56:06.176297+05:30",
+  "scraped_at": "2026-08-24T21:49:54.051601+05:30",
   "date": "2026-08-24",
   "has_data_for_today": true,
   "available_dates": [
@@ -8,13 +8,13 @@
     "2026-08-26"
   ],
   "colors": {
-    "Alappuzha": "yellow",
+    "Alappuzha": "orange",
     "Ernakulam": "orange",
     "Idukki": "orange",
     "Kannur": "orange",
     "Kasaragod": "yellow",
     "Kollam": "yellow",
-    "Kottayam": "yellow",
+    "Kottayam": "orange",
     "Kozhikode": "orange",
     "Malappuram": "orange",
     "Palakkad": "yellow",
