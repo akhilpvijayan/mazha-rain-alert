@@ -1,95 +1,30 @@
 {
   "alerts": {
     "red": [],
-    "orange": [
-      {
-        "date": "2026-08-25",
-        "districts_ml": [
-          "ഇടുക്കി",
-          "എറണാകുളം",
-          "കോഴിക്കോട്",
-          "വയനാട്",
-          "കണ്ണൂർ"
-        ],
-        "districts_en": [
-          "Idukki",
-          "Ernakulam",
-          "Kozhikode",
-          "Wayanad",
-          "Kannur"
-        ]
-      }
-    ],
+    "orange": [],
     "yellow": [
-      {
-        "date": "2026-08-25",
-        "districts_ml": [
-          "തിരുവനന്തപുരം",
-          "കൊല്ലം",
-          "പത്തനംതിട്ട",
-          "ആലപ്പുഴ",
-          "കോട്ടയം",
-          "തൃശ്ശൂർ",
-          "പാലക്കാട്",
-          "മലപ്പുറം"
-        ],
-        "districts_en": [
-          "Thiruvananthapuram",
-          "Kollam",
-          "Pathanamthitta",
-          "Alappuzha",
-          "Kottayam",
-          "Thrissur",
-          "Palakkad",
-          "Malappuram"
-        ]
-      },
       {
         "date": "2026-08-26",
         "districts_ml": [
           "പത്തനംതിട്ട",
+          "ആലപ്പുഴ",
           "കോട്ടയം",
           "ഇടുക്കി",
           "എറണാകുളം",
-          "കണ്ണൂർ",
-          "കാസറഗോഡ്"
+          "കണ്ണൂർ"
         ],
         "districts_en": [
           "Pathanamthitta",
+          "Alappuzha",
           "Kottayam",
           "Idukki",
           "Ernakulam",
-          "Kannur",
-          "Kasaragod"
+          "Kannur"
         ]
       }
     ]
   },
   "district_alert_map": {
-    "Idukki": [
-      "orange",
-      "yellow"
-    ],
-    "Ernakulam": [
-      "orange",
-      "yellow"
-    ],
-    "Kozhikode": [
-      "orange"
-    ],
-    "Wayanad": [
-      "orange"
-    ],
-    "Kannur": [
-      "orange",
-      "yellow"
-    ],
-    "Thiruvananthapuram": [
-      "yellow"
-    ],
-    "Kollam": [
-      "yellow"
-    ],
     "Pathanamthitta": [
       "yellow"
     ],
@@ -99,25 +34,22 @@
     "Kottayam": [
       "yellow"
     ],
-    "Thrissur": [
+    "Idukki": [
       "yellow"
     ],
-    "Palakkad": [
+    "Ernakulam": [
       "yellow"
     ],
-    "Malappuram": [
-      "yellow"
-    ],
-    "Kasaragod": [
+    "Kannur": [
       "yellow"
     ]
   },
   "district_colors": {
-    "Alappuzha": "green",
+    "Alappuzha": "yellow",
     "Ernakulam": "yellow",
     "Idukki": "yellow",
     "Kannur": "yellow",
-    "Kasaragod": "yellow",
+    "Kasaragod": "green",
     "Kollam": "green",
     "Kottayam": "yellow",
     "Kozhikode": "green",
@@ -129,8 +61,7 @@
     "Wayanad": "green"
   },
   "available_dates": [
-    "2026-08-25",
     "2026-08-26"
   ],
-  "scraped_at": "2026-08-26T13:04:53.936359+05:30"
+  "scraped_at": "2026-08-26T13:56:46.301775+05:30"
 }
