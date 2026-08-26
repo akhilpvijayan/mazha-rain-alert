@@ -6,6 +6,8 @@
       {
         "date": "2026-08-26",
         "districts_ml": [
+          "തിരുവനന്തപുരം",
+          "കൊല്ലം",
           "പത്തനംതിട്ട",
           "ആലപ്പുഴ",
           "കോട്ടയം",
@@ -14,6 +16,8 @@
           "കണ്ണൂർ"
         ],
         "districts_en": [
+          "Thiruvananthapuram",
+          "Kollam",
           "Pathanamthitta",
           "Alappuzha",
           "Kottayam",
@@ -25,6 +29,12 @@
     ]
   },
   "district_alert_map": {
+    "Thiruvananthapuram": [
+      "yellow"
+    ],
+    "Kollam": [
+      "yellow"
+    ],
     "Pathanamthitta": [
       "yellow"
     ],
@@ -50,18 +60,18 @@
     "Idukki": "yellow",
     "Kannur": "yellow",
     "Kasaragod": "green",
-    "Kollam": "green",
+    "Kollam": "yellow",
     "Kottayam": "yellow",
     "Kozhikode": "green",
     "Malappuram": "green",
     "Palakkad": "green",
     "Pathanamthitta": "yellow",
-    "Thiruvananthapuram": "green",
+    "Thiruvananthapuram": "yellow",
     "Thrissur": "green",
     "Wayanad": "green"
   },
   "available_dates": [
     "2026-08-26"
   ],
-  "scraped_at": "2026-08-26T15:51:40.211324+05:30"
+  "scraped_at": "2026-08-26T16:46:59.803380+05:30"
 }
