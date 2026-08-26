@@ -1,53 +1,61 @@
 {
   "alerts": {
     "red": [],
-    "orange": [],
+    "orange": [
+      {
+        "date": "2026-08-26",
+        "districts_ml": [
+          "പത്തനംതിട്ട",
+          "കോട്ടയം",
+          "ഇടുക്കി",
+          "എറണാകുളം"
+        ],
+        "districts_en": [
+          "Pathanamthitta",
+          "Kottayam",
+          "Idukki",
+          "Ernakulam"
+        ]
+      }
+    ],
     "yellow": [
       {
         "date": "2026-08-26",
         "districts_ml": [
           "തിരുവനന്തപുരം",
           "കൊല്ലം",
-          "പത്തനംതിട്ട",
           "ആലപ്പുഴ",
-          "കോട്ടയം",
-          "ഇടുക്കി",
-          "എറണാകുളം",
           "കണ്ണൂർ"
         ],
         "districts_en": [
           "Thiruvananthapuram",
           "Kollam",
-          "Pathanamthitta",
           "Alappuzha",
-          "Kottayam",
-          "Idukki",
-          "Ernakulam",
           "Kannur"
         ]
       }
     ]
   },
   "district_alert_map": {
+    "Pathanamthitta": [
+      "orange"
+    ],
+    "Kottayam": [
+      "orange"
+    ],
+    "Idukki": [
+      "orange"
+    ],
+    "Ernakulam": [
+      "orange"
+    ],
     "Thiruvananthapuram": [
       "yellow"
     ],
     "Kollam": [
       "yellow"
     ],
-    "Pathanamthitta": [
-      "yellow"
-    ],
     "Alappuzha": [
-      "yellow"
-    ],
-    "Kottayam": [
-      "yellow"
-    ],
-    "Idukki": [
-      "yellow"
-    ],
-    "Ernakulam": [
       "yellow"
     ],
     "Kannur": [
@@ -56,16 +64,16 @@
   },
   "district_colors": {
     "Alappuzha": "yellow",
-    "Ernakulam": "yellow",
-    "Idukki": "yellow",
+    "Ernakulam": "orange",
+    "Idukki": "orange",
     "Kannur": "yellow",
     "Kasaragod": "green",
     "Kollam": "yellow",
-    "Kottayam": "yellow",
+    "Kottayam": "orange",
     "Kozhikode": "green",
     "Malappuram": "green",
     "Palakkad": "green",
-    "Pathanamthitta": "yellow",
+    "Pathanamthitta": "orange",
     "Thiruvananthapuram": "yellow",
     "Thrissur": "green",
     "Wayanad": "green"
@@ -73,5 +81,5 @@
   "available_dates": [
     "2026-08-26"
   ],
-  "scraped_at": "2026-08-26T17:51:29.831802+05:30"
+  "scraped_at": "2026-08-26T19:12:50.629176+05:30"
 }
