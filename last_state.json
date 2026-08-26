@@ -25,12 +25,14 @@
           "തിരുവനന്തപുരം",
           "കൊല്ലം",
           "ആലപ്പുഴ",
+          "തൃശ്ശൂർ",
           "കണ്ണൂർ"
         ],
         "districts_en": [
           "Thiruvananthapuram",
           "Kollam",
           "Alappuzha",
+          "Thrissur",
           "Kannur"
         ]
       }
@@ -58,28 +60,31 @@
     "Alappuzha": [
       "yellow"
     ],
+    "Thrissur": [
+      "yellow"
+    ],
     "Kannur": [
       "yellow"
     ]
   },
   "district_colors": {
-    "Alappuzha": "yellow",
-    "Ernakulam": "orange",
-    "Idukki": "orange",
-    "Kannur": "yellow",
+    "Alappuzha": "green",
+    "Ernakulam": "green",
+    "Idukki": "green",
+    "Kannur": "green",
     "Kasaragod": "green",
-    "Kollam": "yellow",
-    "Kottayam": "orange",
+    "Kollam": "green",
+    "Kottayam": "green",
     "Kozhikode": "green",
     "Malappuram": "green",
     "Palakkad": "green",
-    "Pathanamthitta": "orange",
-    "Thiruvananthapuram": "yellow",
+    "Pathanamthitta": "green",
+    "Thiruvananthapuram": "green",
     "Thrissur": "green",
     "Wayanad": "green"
   },
   "available_dates": [
     "2026-08-26"
   ],
-  "scraped_at": "2026-08-26T21:36:56.739979+05:30"
+  "scraped_at": "2026-08-27T00:01:28.770763+05:30"
 }
