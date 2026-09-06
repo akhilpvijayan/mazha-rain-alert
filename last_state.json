@@ -2,28 +2,9 @@
   "alerts": {
     "red": [],
     "orange": [],
-    "yellow": [
-      {
-        "date": "2026-09-05",
-        "districts_ml": [
-          "പത്തനംതിട്ട",
-          "ഇടുക്കി"
-        ],
-        "districts_en": [
-          "Pathanamthitta",
-          "Idukki"
-        ]
-      }
-    ]
+    "yellow": []
   },
-  "district_alert_map": {
-    "Pathanamthitta": [
-      "yellow"
-    ],
-    "Idukki": [
-      "yellow"
-    ]
-  },
+  "district_alert_map": {},
   "district_colors": {
     "Alappuzha": "green",
     "Ernakulam": "green",
@@ -40,8 +21,6 @@
     "Thrissur": "green",
     "Wayanad": "green"
   },
-  "available_dates": [
-    "2026-09-05"
-  ],
-  "scraped_at": "2026-09-06T10:41:30.828878+05:30"
+  "available_dates": [],
+  "scraped_at": "2026-09-06T15:13:52.935276+05:30"
 }
