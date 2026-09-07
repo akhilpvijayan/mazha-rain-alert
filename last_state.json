@@ -2,9 +2,52 @@
   "alerts": {
     "red": [],
     "orange": [],
-    "yellow": []
+    "yellow": [
+      {
+        "date": "2026-09-10",
+        "districts_ml": [
+          "ആലപ്പുഴ",
+          "എറണാകുളം"
+        ],
+        "districts_en": [
+          "Alappuzha",
+          "Ernakulam"
+        ]
+      },
+      {
+        "date": "2026-09-11",
+        "districts_ml": [
+          "പത്തനംതിട്ട",
+          "കോട്ടയം",
+          "ഇടുക്കി",
+          "എറണാകുളം"
+        ],
+        "districts_en": [
+          "Pathanamthitta",
+          "Kottayam",
+          "Idukki",
+          "Ernakulam"
+        ]
+      }
+    ]
   },
-  "district_alert_map": {},
+  "district_alert_map": {
+    "Alappuzha": [
+      "yellow"
+    ],
+    "Ernakulam": [
+      "yellow"
+    ],
+    "Pathanamthitta": [
+      "yellow"
+    ],
+    "Kottayam": [
+      "yellow"
+    ],
+    "Idukki": [
+      "yellow"
+    ]
+  },
   "district_colors": {
     "Alappuzha": "green",
     "Ernakulam": "green",
@@ -21,6 +64,9 @@
     "Thrissur": "green",
     "Wayanad": "green"
   },
-  "available_dates": [],
-  "scraped_at": "2026-09-07T10:49:08.780149+05:30"
+  "available_dates": [
+    "2026-09-10",
+    "2026-09-11"
+  ],
+  "scraped_at": "2026-09-07T16:17:23.304034+05:30"
 }
