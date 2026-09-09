@@ -67,8 +67,8 @@
     ]
   },
   "district_colors": {
-    "Alappuzha": "green",
-    "Ernakulam": "green",
+    "Alappuzha": "yellow",
+    "Ernakulam": "yellow",
     "Idukki": "green",
     "Kannur": "green",
     "Kasaragod": "green",
@@ -87,5 +87,5 @@
     "2026-09-11",
     "2026-09-12"
   ],
-  "scraped_at": "2026-09-09T23:32:53.961671+05:30"
+  "scraped_at": "2026-09-10T00:34:48.855316+05:30"
 }
