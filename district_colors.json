@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-09-14T12:43:49.855464+05:30",
+  "scraped_at": "2026-09-14T19:56:59.664017+05:30",
   "date": "2026-09-14",
   "has_data_for_today": true,
   "available_dates": [
@@ -14,7 +14,7 @@
     "Kannur": "green",
     "Kasaragod": "green",
     "Kollam": "green",
-    "Kottayam": "green",
+    "Kottayam": "yellow",
     "Kozhikode": "green",
     "Malappuram": "green",
     "Palakkad": "yellow",

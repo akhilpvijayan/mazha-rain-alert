@@ -7,11 +7,13 @@
         "date": "2026-09-14",
         "districts_ml": [
           "പത്തനംതിട്ട",
+          "കോട്ടയം",
           "ഇടുക്കി",
           "പാലക്കാട്"
         ],
         "districts_en": [
           "Pathanamthitta",
+          "Kottayam",
           "Idukki",
           "Palakkad"
         ]
@@ -50,6 +52,9 @@
     "Pathanamthitta": [
       "yellow"
     ],
+    "Kottayam": [
+      "yellow"
+    ],
     "Idukki": [
       "yellow"
     ],
@@ -76,7 +81,7 @@
     "Kannur": "green",
     "Kasaragod": "green",
     "Kollam": "green",
-    "Kottayam": "green",
+    "Kottayam": "yellow",
     "Kozhikode": "green",
     "Malappuram": "green",
     "Palakkad": "yellow",
@@ -90,5 +95,5 @@
     "2026-09-15",
     "2026-09-16"
   ],
-  "scraped_at": "2026-09-14T12:43:49.855464+05:30"
+  "scraped_at": "2026-09-14T19:56:59.664017+05:30"
 }
