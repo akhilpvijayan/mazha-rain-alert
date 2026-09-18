@@ -4,17 +4,6 @@
     "orange": [],
     "yellow": [
       {
-        "date": "2026-09-17",
-        "districts_ml": [
-          "പത്തനംതിട്ട",
-          "ഇടുക്കി"
-        ],
-        "districts_en": [
-          "Pathanamthitta",
-          "Idukki"
-        ]
-      },
-      {
         "date": "2026-09-18",
         "districts_ml": [
           "ആലപ്പുഴ",
@@ -58,16 +47,13 @@
     ]
   },
   "district_alert_map": {
-    "Pathanamthitta": [
-      "yellow"
-    ],
-    "Idukki": [
-      "yellow"
-    ],
     "Alappuzha": [
       "yellow"
     ],
     "Kottayam": [
+      "yellow"
+    ],
+    "Idukki": [
       "yellow"
     ],
     "Malappuram": [
@@ -97,10 +83,9 @@
     "Wayanad": "green"
   },
   "available_dates": [
-    "2026-09-17",
     "2026-09-18",
     "2026-09-19",
     "2026-09-20"
   ],
-  "scraped_at": "2026-09-18T12:14:03.689288+05:30"
+  "scraped_at": "2026-09-18T17:24:15.453052+05:30"
 }
