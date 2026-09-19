@@ -4,31 +4,18 @@
     "orange": [],
     "yellow": [
       {
-        "date": "2026-09-18",
-        "districts_ml": [
-          "ആലപ്പുഴ",
-          "കോട്ടയം",
-          "ഇടുക്കി"
-        ],
-        "districts_en": [
-          "Alappuzha",
-          "Kottayam",
-          "Idukki"
-        ]
-      },
-      {
         "date": "2026-09-19",
         "districts_ml": [
+          "പത്തനംതിട്ട",
           "കോട്ടയം",
           "ഇടുക്കി",
-          "മലപ്പുറം",
-          "കോഴിക്കോട്"
+          "എറണാകുളം"
         ],
         "districts_en": [
+          "Pathanamthitta",
           "Kottayam",
           "Idukki",
-          "Malappuram",
-          "Kozhikode"
+          "Ernakulam"
         ]
       },
       {
@@ -43,11 +30,24 @@
           "Idukki",
           "Ernakulam"
         ]
+      },
+      {
+        "date": "2026-09-21",
+        "districts_ml": [
+          "കൊല്ലം",
+          "പത്തനംതിട്ട",
+          "കോട്ടയം"
+        ],
+        "districts_en": [
+          "Kollam",
+          "Pathanamthitta",
+          "Kottayam"
+        ]
       }
     ]
   },
   "district_alert_map": {
-    "Alappuzha": [
+    "Pathanamthitta": [
       "yellow"
     ],
     "Kottayam": [
@@ -56,36 +56,33 @@
     "Idukki": [
       "yellow"
     ],
-    "Malappuram": [
-      "yellow"
-    ],
-    "Kozhikode": [
-      "yellow"
-    ],
     "Ernakulam": [
+      "yellow"
+    ],
+    "Kollam": [
       "yellow"
     ]
   },
   "district_colors": {
     "Alappuzha": "green",
-    "Ernakulam": "green",
+    "Ernakulam": "yellow",
     "Idukki": "yellow",
     "Kannur": "green",
     "Kasaragod": "green",
     "Kollam": "green",
     "Kottayam": "yellow",
-    "Kozhikode": "yellow",
-    "Malappuram": "yellow",
+    "Kozhikode": "green",
+    "Malappuram": "green",
     "Palakkad": "green",
-    "Pathanamthitta": "green",
+    "Pathanamthitta": "yellow",
     "Thiruvananthapuram": "green",
     "Thrissur": "green",
     "Wayanad": "green"
   },
   "available_dates": [
-    "2026-09-18",
     "2026-09-19",
-    "2026-09-20"
+    "2026-09-20",
+    "2026-09-21"
   ],
-  "scraped_at": "2026-09-19T12:13:20.196280+05:30"
+  "scraped_at": "2026-09-19T17:08:24.819469+05:30"
 }
