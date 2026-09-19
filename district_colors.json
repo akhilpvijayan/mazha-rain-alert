@@ -1,6 +1,6 @@
 {
-  "scraped_at": "2026-09-19T23:00:03.981871+05:30",
-  "date": "2026-09-19",
+  "scraped_at": "2026-09-20T01:07:39.852459+05:30",
+  "date": "2026-09-20",
   "has_data_for_today": true,
   "available_dates": [
     "2026-09-19",
@@ -18,7 +18,7 @@
     "Kozhikode": "green",
     "Malappuram": "green",
     "Palakkad": "green",
-    "Pathanamthitta": "yellow",
+    "Pathanamthitta": "green",
     "Thiruvananthapuram": "green",
     "Thrissur": "green",
     "Wayanad": "green"
