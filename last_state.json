@@ -13,7 +13,7 @@
           "കോട്ടയം",
           "ഇടുക്കി",
           "എറണാകുളം",
-          "തൃശ്ശൂർ"
+          "തൃശൂർ"
         ],
         "districts_en": [
           "Thiruvananthapuram",
@@ -27,14 +27,54 @@
         ]
       },
       {
+        "date": "2026-09-23",
+        "districts_ml": [
+          "തിരുവനന്തപുരം",
+          "കൊല്ലം",
+          "പത്തനംതിട്ട"
+        ],
+        "districts_en": [
+          "Thiruvananthapuram",
+          "Kollam",
+          "Pathanamthitta"
+        ]
+      },
+      {
         "date": "2026-09-24",
         "districts_ml": [
+          "മലപ്പുറം",
           "കോഴിക്കോട്",
+          "വയനാട്",
           "കണ്ണൂർ",
           "കാസറഗോഡ്"
         ],
         "districts_en": [
+          "Malappuram",
           "Kozhikode",
+          "Wayanad",
+          "Kannur",
+          "Kasaragod"
+        ]
+      },
+      {
+        "date": "2026-09-25",
+        "districts_ml": [
+          "തിരുവനന്തപുരം",
+          "കൊല്ലം",
+          "പത്തനംതിട്ട",
+          "മലപ്പുറം",
+          "കോഴിക്കോട്",
+          "വയനാട്",
+          "കണ്ണൂർ",
+          "കാസറഗോഡ്"
+        ],
+        "districts_en": [
+          "Thiruvananthapuram",
+          "Kollam",
+          "Pathanamthitta",
+          "Malappuram",
+          "Kozhikode",
+          "Wayanad",
           "Kannur",
           "Kasaragod"
         ]
@@ -66,7 +106,13 @@
     "Thrissur": [
       "yellow"
     ],
+    "Malappuram": [
+      "yellow"
+    ],
     "Kozhikode": [
+      "yellow"
+    ],
+    "Wayanad": [
       "yellow"
     ],
     "Kannur": [
@@ -94,7 +140,9 @@
   },
   "available_dates": [
     "2026-09-21",
-    "2026-09-24"
+    "2026-09-23",
+    "2026-09-24",
+    "2026-09-25"
   ],
-  "scraped_at": "2026-09-21T12:47:07.615369+05:30"
+  "scraped_at": "2026-09-21T20:04:17.035332+05:30"
 }
