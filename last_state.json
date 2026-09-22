@@ -4,39 +4,24 @@
     "orange": [],
     "yellow": [
       {
-        "date": "2026-09-21",
+        "date": "2026-09-23",
         "districts_ml": [
           "തിരുവനന്തപുരം",
           "കൊല്ലം",
           "പത്തനംതിട്ട",
-          "ആലപ്പുഴ",
           "കോട്ടയം",
           "ഇടുക്കി",
-          "എറണാകുളം",
-          "തൃശൂർ"
+          "കണ്ണൂർ",
+          "കാസറഗോഡ്"
         ],
         "districts_en": [
           "Thiruvananthapuram",
           "Kollam",
           "Pathanamthitta",
-          "Alappuzha",
           "Kottayam",
           "Idukki",
-          "Ernakulam",
-          "Thrissur"
-        ]
-      },
-      {
-        "date": "2026-09-23",
-        "districts_ml": [
-          "തിരുവനന്തപുരം",
-          "കൊല്ലം",
-          "പത്തനംതിട്ട"
-        ],
-        "districts_en": [
-          "Thiruvananthapuram",
-          "Kollam",
-          "Pathanamthitta"
+          "Kannur",
+          "Kasaragod"
         ]
       },
       {
@@ -59,7 +44,6 @@
       {
         "date": "2026-09-25",
         "districts_ml": [
-          "തിരുവനന്തപുരം",
           "കൊല്ലം",
           "പത്തനംതിട്ട",
           "മലപ്പുറം",
@@ -69,7 +53,6 @@
           "കാസറഗോഡ്"
         ],
         "districts_en": [
-          "Thiruvananthapuram",
           "Kollam",
           "Pathanamthitta",
           "Malappuram",
@@ -91,19 +74,16 @@
     "Pathanamthitta": [
       "yellow"
     ],
-    "Alappuzha": [
-      "yellow"
-    ],
     "Kottayam": [
       "yellow"
     ],
     "Idukki": [
       "yellow"
     ],
-    "Ernakulam": [
+    "Kannur": [
       "yellow"
     ],
-    "Thrissur": [
+    "Kasaragod": [
       "yellow"
     ],
     "Malappuram": [
@@ -113,12 +93,6 @@
       "yellow"
     ],
     "Wayanad": [
-      "yellow"
-    ],
-    "Kannur": [
-      "yellow"
-    ],
-    "Kasaragod": [
       "yellow"
     ]
   },
@@ -139,10 +113,9 @@
     "Wayanad": "green"
   },
   "available_dates": [
-    "2026-09-21",
     "2026-09-23",
     "2026-09-24",
     "2026-09-25"
   ],
-  "scraped_at": "2026-09-22T12:23:12.661349+05:30"
+  "scraped_at": "2026-09-22T17:38:12.238369+05:30"
 }
