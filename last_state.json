@@ -4,9 +4,10 @@
     "orange": [],
     "yellow": [
       {
-        "date": "2026-09-24",
+        "date": "2026-09-25",
         "districts_ml": [
           "തിരുവനന്തപുരം",
+          "മലപ്പുറം",
           "കോഴിക്കോട്",
           "വയനാട്",
           "കണ്ണൂർ",
@@ -14,19 +15,9 @@
         ],
         "districts_en": [
           "Thiruvananthapuram",
+          "Malappuram",
           "Kozhikode",
           "Wayanad",
-          "Kannur",
-          "Kasaragod"
-        ]
-      },
-      {
-        "date": "2026-09-25",
-        "districts_ml": [
-          "കണ്ണൂർ",
-          "കാസറഗോഡ്"
-        ],
-        "districts_en": [
           "Kannur",
           "Kasaragod"
         ]
@@ -35,6 +26,9 @@
   },
   "district_alert_map": {
     "Thiruvananthapuram": [
+      "yellow"
+    ],
+    "Malappuram": [
       "yellow"
     ],
     "Kozhikode": [
@@ -58,17 +52,16 @@
     "Kasaragod": "yellow",
     "Kollam": "green",
     "Kottayam": "green",
-    "Kozhikode": "green",
-    "Malappuram": "green",
+    "Kozhikode": "yellow",
+    "Malappuram": "yellow",
     "Palakkad": "green",
     "Pathanamthitta": "green",
-    "Thiruvananthapuram": "green",
+    "Thiruvananthapuram": "yellow",
     "Thrissur": "green",
-    "Wayanad": "green"
+    "Wayanad": "yellow"
   },
   "available_dates": [
-    "2026-09-24",
     "2026-09-25"
   ],
-  "scraped_at": "2026-09-25T13:43:08.786023+05:30"
+  "scraped_at": "2026-09-25T19:43:06.198363+05:30"
 }
