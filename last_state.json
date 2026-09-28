@@ -17,14 +17,37 @@
       {
         "date": "2026-10-01",
         "districts_ml": [
+          "പത്തനംതിട്ട",
           "കോട്ടയം",
+          "ഇടുക്കി",
           "എറണാകുളം",
-          "ഇടുക്കി"
+          "പാലക്കാട്",
+          "മലപ്പുറം"
         ],
         "districts_en": [
+          "Pathanamthitta",
           "Kottayam",
+          "Idukki",
           "Ernakulam",
-          "Idukki"
+          "Palakkad",
+          "Malappuram"
+        ]
+      },
+      {
+        "date": "2026-10-02",
+        "districts_ml": [
+          "പത്തനംതിട്ട",
+          "ഇടുക്കി",
+          "പാലക്കാട്",
+          "മലപ്പുറം",
+          "വയനാട്"
+        ],
+        "districts_en": [
+          "Pathanamthitta",
+          "Idukki",
+          "Palakkad",
+          "Malappuram",
+          "Wayanad"
         ]
       }
     ]
@@ -40,6 +63,15 @@
       "yellow"
     ],
     "Ernakulam": [
+      "yellow"
+    ],
+    "Palakkad": [
+      "yellow"
+    ],
+    "Malappuram": [
+      "yellow"
+    ],
+    "Wayanad": [
       "yellow"
     ]
   },
@@ -61,7 +93,8 @@
   },
   "available_dates": [
     "2026-09-30",
-    "2026-10-01"
+    "2026-10-01",
+    "2026-10-02"
   ],
-  "scraped_at": "2026-09-28T11:29:35.150290+05:30"
+  "scraped_at": "2026-09-28T18:27:48.976690+05:30"
 }
