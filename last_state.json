@@ -22,7 +22,9 @@
         "districts_ml": [
           "തിരുവനന്തപുരം",
           "കൊല്ലം",
+          "ആലപ്പുഴ",
           "എറണാകുളം",
+          "തൃശ്ശൂർ",
           "പാലക്കാട്",
           "മലപ്പുറം",
           "വയനാട്"
@@ -30,7 +32,9 @@
         "districts_en": [
           "Thiruvananthapuram",
           "Kollam",
+          "Alappuzha",
           "Ernakulam",
+          "Thrissur",
           "Palakkad",
           "Malappuram",
           "Wayanad"
@@ -85,7 +89,13 @@
     "Kollam": [
       "yellow"
     ],
+    "Alappuzha": [
+      "yellow"
+    ],
     "Ernakulam": [
+      "yellow"
+    ],
+    "Thrissur": [
       "yellow"
     ],
     "Palakkad": [
@@ -99,7 +109,7 @@
     ]
   },
   "district_colors": {
-    "Alappuzha": "green",
+    "Alappuzha": "yellow",
     "Ernakulam": "yellow",
     "Idukki": "orange",
     "Kannur": "green",
@@ -111,7 +121,7 @@
     "Palakkad": "yellow",
     "Pathanamthitta": "orange",
     "Thiruvananthapuram": "yellow",
-    "Thrissur": "green",
+    "Thrissur": "yellow",
     "Wayanad": "yellow"
   },
   "available_dates": [
@@ -119,5 +129,5 @@
     "2026-10-04",
     "2026-10-05"
   ],
-  "scraped_at": "2026-10-01T14:57:19.633086+05:30"
+  "scraped_at": "2026-10-01T22:12:48.940136+05:30"
 }
