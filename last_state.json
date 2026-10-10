@@ -4,58 +4,24 @@
     "orange": [],
     "yellow": [
       {
-        "date": "2026-10-09",
-        "districts_ml": [
-          "തിരുവനന്തപുരം",
-          "കൊല്ലം",
-          "പത്തനംതിട്ട",
-          "ആലപ്പുഴ",
-          "കോട്ടയം",
-          "ഇടുക്കി",
-          "എറണാകുളം",
-          "കോഴിക്കോട്",
-          "വയനാട്"
-        ],
-        "districts_en": [
-          "Thiruvananthapuram",
-          "Kollam",
-          "Pathanamthitta",
-          "Alappuzha",
-          "Kottayam",
-          "Idukki",
-          "Ernakulam",
-          "Kozhikode",
-          "Wayanad"
-        ]
-      },
-      {
         "date": "2026-10-10",
         "districts_ml": [
           "പത്തനംതിട്ട",
           "കോട്ടയം",
-          "എറണാകുളം",
-          "ഇടുക്കി"
+          "ഇടുക്കി",
+          "എറണാകുളം"
         ],
         "districts_en": [
           "Pathanamthitta",
           "Kottayam",
-          "Ernakulam",
-          "Idukki"
+          "Idukki",
+          "Ernakulam"
         ]
       }
     ]
   },
   "district_alert_map": {
-    "Thiruvananthapuram": [
-      "yellow"
-    ],
-    "Kollam": [
-      "yellow"
-    ],
     "Pathanamthitta": [
-      "yellow"
-    ],
-    "Alappuzha": [
       "yellow"
     ],
     "Kottayam": [
@@ -65,12 +31,6 @@
       "yellow"
     ],
     "Ernakulam": [
-      "yellow"
-    ],
-    "Kozhikode": [
-      "yellow"
-    ],
-    "Wayanad": [
       "yellow"
     ]
   },
@@ -91,8 +51,7 @@
     "Wayanad": "green"
   },
   "available_dates": [
-    "2026-10-09",
     "2026-10-10"
   ],
-  "scraped_at": "2026-10-10T08:21:01.056163+05:30"
+  "scraped_at": "2026-10-10T14:37:33.223375+05:30"
 }
