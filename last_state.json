@@ -28,6 +28,7 @@
           "തൃശ്ശൂർ",
           "പാലക്കാട്",
           "മലപ്പുറം",
+          "കോഴിക്കോട്",
           "വയനാട്"
         ],
         "districts_en": [
@@ -36,7 +37,25 @@
           "Thrissur",
           "Palakkad",
           "Malappuram",
+          "Kozhikode",
           "Wayanad"
+        ]
+      },
+      {
+        "date": "2026-10-17",
+        "districts_ml": [
+          "ഇടുക്കി",
+          "എറണാകുളം",
+          "തൃശ്ശൂർ",
+          "പാലക്കാട്",
+          "മലപ്പുറം"
+        ],
+        "districts_en": [
+          "Idukki",
+          "Ernakulam",
+          "Thrissur",
+          "Palakkad",
+          "Malappuram"
         ]
       }
     ]
@@ -69,6 +88,9 @@
     "Malappuram": [
       "yellow"
     ],
+    "Kozhikode": [
+      "yellow"
+    ],
     "Wayanad": [
       "yellow"
     ]
@@ -91,7 +113,8 @@
   },
   "available_dates": [
     "2026-10-15",
-    "2026-10-16"
+    "2026-10-16",
+    "2026-10-17"
   ],
-  "scraped_at": "2026-10-13T07:09:36.238874+05:30"
+  "scraped_at": "2026-10-13T14:03:18.408965+05:30"
 }
