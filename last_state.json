@@ -5,13 +5,19 @@
       {
         "date": "2026-10-15",
         "districts_ml": [
+          "തിരുവനന്തപുരം",
+          "കൊല്ലം",
           "പത്തനംതിട്ട",
+          "ആലപ്പുഴ",
           "കോട്ടയം",
           "ഇടുക്കി",
           "എറണാകുളം"
         ],
         "districts_en": [
+          "Thiruvananthapuram",
+          "Kollam",
           "Pathanamthitta",
+          "Alappuzha",
           "Kottayam",
           "Idukki",
           "Ernakulam"
@@ -22,8 +28,6 @@
       {
         "date": "2026-10-15",
         "districts_ml": [
-          "കൊല്ലം",
-          "ആലപ്പുഴ",
           "തൃശ്ശൂർ",
           "പാലക്കാട്",
           "മലപ്പുറം",
@@ -33,8 +37,6 @@
           "കാസറഗോഡ്"
         ],
         "districts_en": [
-          "Kollam",
-          "Alappuzha",
           "Thrissur",
           "Palakkad",
           "Malappuram",
@@ -47,6 +49,7 @@
       {
         "date": "2026-10-16",
         "districts_ml": [
+          "തിരുവനന്തപുരം",
           "കൊല്ലം",
           "പത്തനംതിട്ട",
           "ആലപ്പുഴ",
@@ -62,6 +65,7 @@
           "കാസറഗോഡ്"
         ],
         "districts_en": [
+          "Thiruvananthapuram",
           "Kollam",
           "Pathanamthitta",
           "Alappuzha",
@@ -123,7 +127,19 @@
     ]
   },
   "district_alert_map": {
+    "Thiruvananthapuram": [
+      "orange",
+      "yellow"
+    ],
+    "Kollam": [
+      "orange",
+      "yellow"
+    ],
     "Pathanamthitta": [
+      "orange",
+      "yellow"
+    ],
+    "Alappuzha": [
       "orange",
       "yellow"
     ],
@@ -137,12 +153,6 @@
     ],
     "Ernakulam": [
       "orange",
-      "yellow"
-    ],
-    "Kollam": [
-      "yellow"
-    ],
-    "Alappuzha": [
       "yellow"
     ],
     "Thrissur": [
@@ -168,18 +178,18 @@
     ]
   },
   "district_colors": {
-    "Alappuzha": "yellow",
+    "Alappuzha": "orange",
     "Ernakulam": "orange",
     "Idukki": "orange",
     "Kannur": "yellow",
     "Kasaragod": "yellow",
-    "Kollam": "yellow",
+    "Kollam": "orange",
     "Kottayam": "orange",
     "Kozhikode": "yellow",
     "Malappuram": "yellow",
     "Palakkad": "yellow",
     "Pathanamthitta": "orange",
-    "Thiruvananthapuram": "green",
+    "Thiruvananthapuram": "orange",
     "Thrissur": "yellow",
     "Wayanad": "yellow"
   },
@@ -190,5 +200,5 @@
     "2026-10-18",
     "2026-10-19"
   ],
-  "scraped_at": "2026-10-15T15:53:55.549338+05:30"
+  "scraped_at": "2026-10-15T20:51:33.816673+05:30"
 }

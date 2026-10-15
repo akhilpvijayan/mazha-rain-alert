@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-10-15T15:53:55.549338+05:30",
+  "scraped_at": "2026-10-15T20:51:33.816673+05:30",
   "date": "2026-10-15",
   "has_data_for_today": true,
   "available_dates": [
@@ -10,18 +10,18 @@
     "2026-10-19"
   ],
   "colors": {
-    "Alappuzha": "yellow",
+    "Alappuzha": "orange",
     "Ernakulam": "orange",
     "Idukki": "orange",
     "Kannur": "yellow",
     "Kasaragod": "yellow",
-    "Kollam": "yellow",
+    "Kollam": "orange",
     "Kottayam": "orange",
     "Kozhikode": "yellow",
     "Malappuram": "yellow",
     "Palakkad": "yellow",
     "Pathanamthitta": "orange",
-    "Thiruvananthapuram": "green",
+    "Thiruvananthapuram": "orange",
     "Thrissur": "yellow",
     "Wayanad": "yellow"
   }
