@@ -186,20 +186,20 @@
     ]
   },
   "district_colors": {
-    "Alappuzha": "yellow",
-    "Ernakulam": "yellow",
-    "Idukki": "yellow",
-    "Kannur": "orange",
+    "Alappuzha": "green",
+    "Ernakulam": "green",
+    "Idukki": "green",
+    "Kannur": "yellow",
     "Kasaragod": "yellow",
-    "Kollam": "yellow",
-    "Kottayam": "yellow",
-    "Kozhikode": "orange",
-    "Malappuram": "orange",
-    "Palakkad": "yellow",
-    "Pathanamthitta": "yellow",
-    "Thiruvananthapuram": "orange",
-    "Thrissur": "yellow",
-    "Wayanad": "orange"
+    "Kollam": "green",
+    "Kottayam": "green",
+    "Kozhikode": "yellow",
+    "Malappuram": "yellow",
+    "Palakkad": "green",
+    "Pathanamthitta": "green",
+    "Thiruvananthapuram": "green",
+    "Thrissur": "green",
+    "Wayanad": "yellow"
   },
   "available_dates": [
     "2026-10-17",
@@ -208,5 +208,5 @@
     "2026-10-20",
     "2026-10-21"
   ],
-  "scraped_at": "2026-10-17T22:10:43.782541+05:30"
+  "scraped_at": "2026-10-18T00:24:00.404784+05:30"
 }
