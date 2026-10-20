@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-10-20T19:23:43.297352+05:30",
+  "scraped_at": "2026-10-20T23:38:10.065170+05:30",
   "date": "2026-10-20",
   "has_data_for_today": true,
   "available_dates": [
@@ -21,7 +21,7 @@
     "Malappuram": "green",
     "Palakkad": "green",
     "Pathanamthitta": "yellow",
-    "Thiruvananthapuram": "yellow",
+    "Thiruvananthapuram": "orange",
     "Thrissur": "green",
     "Wayanad": "green"
   }
