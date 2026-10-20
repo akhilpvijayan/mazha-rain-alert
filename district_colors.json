@@ -1,6 +1,6 @@
 {
-  "scraped_at": "2026-10-20T23:38:10.065170+05:30",
-  "date": "2026-10-20",
+  "scraped_at": "2026-10-21T03:27:02.044892+05:30",
+  "date": "2026-10-21",
   "has_data_for_today": true,
   "available_dates": [
     "2026-10-20",
@@ -18,11 +18,11 @@
     "Kollam": "yellow",
     "Kottayam": "yellow",
     "Kozhikode": "green",
-    "Malappuram": "green",
-    "Palakkad": "green",
+    "Malappuram": "yellow",
+    "Palakkad": "yellow",
     "Pathanamthitta": "yellow",
-    "Thiruvananthapuram": "orange",
-    "Thrissur": "green",
+    "Thiruvananthapuram": "yellow",
+    "Thrissur": "yellow",
     "Wayanad": "green"
   }
 }
