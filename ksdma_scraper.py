@@ -48,6 +48,14 @@ one verified, not guessed):
    - no fallback to a different date). A 5-day forecast blended together,
    or silently substituted with a future date, would show today an alert
    color that isn't actually valid for today.
+5. KSDMA spells Kasaragod two different ways within the SAME bulletin:
+   "കാസർഗോഡ്" (ർഗ - used in Orange alerts) and "കാസറഗോഡ്" (റഗ - used in
+   some Yellow lines). DISTRICT_MAP only had one, so entries using the other
+   were silently dropped and Kasaragod showed green on an Orange day.
+   Fixed by adding both spellings to DISTRICT_MAP. Any district name that
+   still fails to match is now PRINTED as a warning (in the regex fallback
+   and in enrich_and_validate) instead of being dropped silently, so a new
+   spelling variant gets noticed the first time it appears.
 
 If build_district_colors() is ever wrong again, the fix belongs in
 extract_with_regex() or the date-matching logic - always verified against
@@ -82,8 +90,8 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 IST = timezone(timedelta(hours=5, minutes=30))
 
 # Malayalam -> English district lookup (all 14 Kerala districts).
-# Includes the alternate spelling of Thrissur (തൃശ്ശൂർ, extra ശ) that
-# KSDMA itself uses inconsistently across bulletins.
+# KSDMA is inconsistent about spelling, so some districts have several
+# variants: Thrissur (തൃശൂർ / തൃശ്ശൂർ) and Kasaragod (കാസറഗോഡ് / കാസർഗോഡ്).
 DISTRICT_MAP = {
     "തിരുവനന്തപുരം": "Thiruvananthapuram",
     "കൊല്ലം": "Kollam",
@@ -100,6 +108,8 @@ DISTRICT_MAP = {
     "വയനാട്": "Wayanad",
     "കണ്ണൂർ": "Kannur",
     "കാസറഗോഡ്": "Kasaragod",
+    "കാസർഗോഡ്": "Kasaragod",   # spelling used in Orange alerts on the live page
+    "കാസർകോട്": "Kasaragod",   # plausible variant, not yet seen in a bulletin
 }
 
 ALERT_KEYWORDS = {
@@ -109,7 +119,7 @@ ALERT_KEYWORDS = {
 }
 
 VALID_LEVELS = ("red", "orange", "yellow")
-ALL_DISTRICTS_EN = sorted(DISTRICT_MAP.values())
+ALL_DISTRICTS_EN = sorted(set(DISTRICT_MAP.values()))
 
 
 # ---------------------------------------------------------------------------
@@ -299,6 +309,15 @@ def extract_with_regex(raw_text: str) -> dict:
             continue
 
         districts_ml = [d.strip() for d in re.split(r"[,،]", district_blob) if d.strip()]
+
+        # Don't drop unknown names silently - a new spelling variant of a
+        # district (like കാസർഗോഡ് vs കാസറഗോഡ്) would otherwise vanish.
+        unknown = [d for d in districts_ml if d not in DISTRICT_MAP]
+        if unknown:
+            print(f"[warn] regex: unrecognised district name(s) under "
+                  f"{current_level.upper()} {date_obj.strftime('%Y-%m-%d')}: {unknown} "
+                  f"- add to DISTRICT_MAP if these are real district spellings.")
+
         districts_ml = [d for d in districts_ml if d in DISTRICT_MAP]
         if districts_ml:
             result[current_level].append({
@@ -332,6 +351,12 @@ def enrich_and_validate(data: dict) -> dict:
                     districts_en.append(DISTRICT_MAP[d_stripped])
                 else:
                     unmatched.append(d_stripped)
+
+            # Loud, not silent: this is exactly how Kasaragod went missing.
+            if unmatched:
+                print(f"[warn] unmatched district name(s) in {level.upper()} "
+                      f"{date_str}: {unmatched} - add to DISTRICT_MAP if these "
+                      f"are real district spellings.")
 
             if not districts_en:
                 continue  # nothing usable in this entry
