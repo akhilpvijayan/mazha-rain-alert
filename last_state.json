@@ -13,17 +13,6 @@
           "Kozhikode",
           "Wayanad"
         ]
-      },
-      {
-        "date": "2026-10-26",
-        "districts_ml": [
-          "ഇടുക്കി",
-          "പാലക്കാട്"
-        ],
-        "districts_en": [
-          "Idukki",
-          "Palakkad"
-        ]
       }
     ],
     "orange": [
@@ -58,16 +47,14 @@
         "date": "2026-10-26",
         "districts_ml": [
           "പത്തനംതിട്ട",
-          "കോട്ടയം",
-          "എറണാകുളം",
-          "തൃശ്ശൂർ",
+          "ഇടുക്കി",
+          "പാലക്കാട്",
           "മലപ്പുറം"
         ],
         "districts_en": [
           "Pathanamthitta",
-          "Kottayam",
-          "Ernakulam",
-          "Thrissur",
+          "Idukki",
+          "Palakkad",
           "Malappuram"
         ]
       }
@@ -88,6 +75,9 @@
           "തിരുവനന്തപുരം",
           "കൊല്ലം",
           "ആലപ്പുഴ",
+          "കോട്ടയം",
+          "എറണാകുളം",
+          "തൃശൂർ",
           "കോഴിക്കോട്",
           "വയനാട്"
         ],
@@ -95,6 +85,9 @@
           "Thiruvananthapuram",
           "Kollam",
           "Alappuzha",
+          "Kottayam",
+          "Ernakulam",
+          "Thrissur",
           "Kozhikode",
           "Wayanad"
         ]
@@ -102,20 +95,18 @@
       {
         "date": "2026-10-27",
         "districts_ml": [
+          "തിരുവനന്തപുരം",
+          "കൊല്ലം",
           "പത്തനംതിട്ട",
-          "കോട്ടയം",
           "ഇടുക്കി",
-          "എറണാകുളം",
-          "തൃശ്ശൂർ",
           "പാലക്കാട്",
           "മലപ്പുറം"
         ],
         "districts_en": [
+          "Thiruvananthapuram",
+          "Kollam",
           "Pathanamthitta",
-          "Kottayam",
           "Idukki",
-          "Ernakulam",
-          "Thrissur",
           "Palakkad",
           "Malappuram"
         ]
@@ -134,16 +125,6 @@
     ],
     "Wayanad": [
       "red",
-      "yellow"
-    ],
-    "Idukki": [
-      "red",
-      "orange",
-      "yellow"
-    ],
-    "Palakkad": [
-      "red",
-      "orange",
       "yellow"
     ],
     "Thiruvananthapuram": [
@@ -166,11 +147,19 @@
       "orange",
       "yellow"
     ],
+    "Idukki": [
+      "orange",
+      "yellow"
+    ],
     "Ernakulam": [
       "orange",
       "yellow"
     ],
     "Thrissur": [
+      "orange",
+      "yellow"
+    ],
+    "Palakkad": [
       "orange",
       "yellow"
     ],
@@ -202,5 +191,5 @@
     "2026-10-26",
     "2026-10-27"
   ],
-  "scraped_at": "2026-10-25T10:54:15.447225+05:30"
+  "scraped_at": "2026-10-25T15:42:36.282711+05:30"
 }
