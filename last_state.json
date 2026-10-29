@@ -2,9 +2,38 @@
   "alerts": {
     "red": [],
     "orange": [],
-    "yellow": []
+    "yellow": [
+      {
+        "date": "2026-11-02",
+        "districts_ml": [
+          "ഇടുക്കി",
+          "പാലക്കാട്",
+          "മലപ്പുറം",
+          "വയനാട്"
+        ],
+        "districts_en": [
+          "Idukki",
+          "Palakkad",
+          "Malappuram",
+          "Wayanad"
+        ]
+      }
+    ]
   },
-  "district_alert_map": {},
+  "district_alert_map": {
+    "Idukki": [
+      "yellow"
+    ],
+    "Palakkad": [
+      "yellow"
+    ],
+    "Malappuram": [
+      "yellow"
+    ],
+    "Wayanad": [
+      "yellow"
+    ]
+  },
   "district_colors": {
     "Alappuzha": "green",
     "Ernakulam": "green",
@@ -21,6 +50,8 @@
     "Thrissur": "green",
     "Wayanad": "green"
   },
-  "available_dates": [],
-  "scraped_at": "2026-10-29T08:28:52.933269+05:30"
+  "available_dates": [
+    "2026-11-02"
+  ],
+  "scraped_at": "2026-10-29T14:47:09.083392+05:30"
 }
