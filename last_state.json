@@ -4,6 +4,19 @@
     "orange": [],
     "yellow": [
       {
+        "date": "2026-11-01",
+        "districts_ml": [
+          "പത്തനംതിട്ട",
+          "കോട്ടയം",
+          "ഇടുക്കി"
+        ],
+        "districts_en": [
+          "Pathanamthitta",
+          "Kottayam",
+          "Idukki"
+        ]
+      },
+      {
         "date": "2026-11-02",
         "districts_ml": [
           "ഇടുക്കി",
@@ -17,10 +30,29 @@
           "Malappuram",
           "Wayanad"
         ]
+      },
+      {
+        "date": "2026-11-03",
+        "districts_ml": [
+          "കോഴിക്കോട്",
+          "വയനാട്",
+          "കണ്ണൂർ"
+        ],
+        "districts_en": [
+          "Kozhikode",
+          "Wayanad",
+          "Kannur"
+        ]
       }
     ]
   },
   "district_alert_map": {
+    "Pathanamthitta": [
+      "yellow"
+    ],
+    "Kottayam": [
+      "yellow"
+    ],
     "Idukki": [
       "yellow"
     ],
@@ -31,6 +63,12 @@
       "yellow"
     ],
     "Wayanad": [
+      "yellow"
+    ],
+    "Kozhikode": [
+      "yellow"
+    ],
+    "Kannur": [
       "yellow"
     ]
   },
@@ -51,7 +89,9 @@
     "Wayanad": "green"
   },
   "available_dates": [
-    "2026-11-02"
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03"
   ],
-  "scraped_at": "2026-10-30T13:17:05.260658+05:30"
+  "scraped_at": "2026-10-30T20:07:13.262393+05:30"
 }
