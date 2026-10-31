@@ -43,6 +43,17 @@
           "Wayanad",
           "Kannur"
         ]
+      },
+      {
+        "date": "2026-11-04",
+        "districts_ml": [
+          "കണ്ണൂർ",
+          "കാസറഗോഡ്"
+        ],
+        "districts_en": [
+          "Kannur",
+          "Kasaragod"
+        ]
       }
     ]
   },
@@ -70,6 +81,9 @@
     ],
     "Kannur": [
       "yellow"
+    ],
+    "Kasaragod": [
+      "yellow"
     ]
   },
   "district_colors": {
@@ -91,7 +105,8 @@
   "available_dates": [
     "2026-11-01",
     "2026-11-02",
-    "2026-11-03"
+    "2026-11-03",
+    "2026-11-04"
   ],
-  "scraped_at": "2026-10-31T08:20:36.661317+05:30"
+  "scraped_at": "2026-10-31T14:28:42.841132+05:30"
 }
