@@ -7,11 +7,13 @@
         "date": "2026-11-01",
         "districts_ml": [
           "പത്തനംതിട്ട",
+          "ആലപ്പുഴ",
           "കോട്ടയം",
           "ഇടുക്കി"
         ],
         "districts_en": [
           "Pathanamthitta",
+          "Alappuzha",
           "Kottayam",
           "Idukki"
         ]
@@ -19,16 +21,20 @@
       {
         "date": "2026-11-02",
         "districts_ml": [
-          "ഇടുക്കി",
           "പാലക്കാട്",
           "മലപ്പുറം",
-          "വയനാട്"
+          "കോഴിക്കോട്",
+          "വയനാട്",
+          "കണ്ണൂർ",
+          "കാസറഗോഡ്"
         ],
         "districts_en": [
-          "Idukki",
           "Palakkad",
           "Malappuram",
-          "Wayanad"
+          "Kozhikode",
+          "Wayanad",
+          "Kannur",
+          "Kasaragod"
         ]
       },
       {
@@ -36,29 +42,38 @@
         "districts_ml": [
           "കോഴിക്കോട്",
           "വയനാട്",
-          "കണ്ണൂർ"
+          "കണ്ണൂർ",
+          "കാസറഗോഡ്"
         ],
         "districts_en": [
           "Kozhikode",
           "Wayanad",
-          "Kannur"
+          "Kannur",
+          "Kasaragod"
         ]
       },
       {
         "date": "2026-11-04",
         "districts_ml": [
-          "കണ്ണൂർ",
-          "കാസറഗോഡ്"
+          "പത്തനംതിട്ട",
+          "ഇടുക്കി",
+          "പാലക്കാട്",
+          "മലപ്പുറം"
         ],
         "districts_en": [
-          "Kannur",
-          "Kasaragod"
+          "Pathanamthitta",
+          "Idukki",
+          "Palakkad",
+          "Malappuram"
         ]
       }
     ]
   },
   "district_alert_map": {
     "Pathanamthitta": [
+      "yellow"
+    ],
+    "Alappuzha": [
       "yellow"
     ],
     "Kottayam": [
@@ -73,10 +88,10 @@
     "Malappuram": [
       "yellow"
     ],
-    "Wayanad": [
+    "Kozhikode": [
       "yellow"
     ],
-    "Kozhikode": [
+    "Wayanad": [
       "yellow"
     ],
     "Kannur": [
@@ -87,7 +102,7 @@
     ]
   },
   "district_colors": {
-    "Alappuzha": "green",
+    "Alappuzha": "yellow",
     "Ernakulam": "green",
     "Idukki": "yellow",
     "Kannur": "green",
@@ -108,5 +123,5 @@
     "2026-11-03",
     "2026-11-04"
   ],
-  "scraped_at": "2026-11-01T13:44:18.078015+05:30"
+  "scraped_at": "2026-11-01T21:00:02.421756+05:30"
 }

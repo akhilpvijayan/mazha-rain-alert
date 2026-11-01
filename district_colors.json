@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-11-01T13:44:18.078015+05:30",
+  "scraped_at": "2026-11-01T21:00:02.421756+05:30",
   "date": "2026-11-01",
   "has_data_for_today": true,
   "available_dates": [
@@ -9,7 +9,7 @@
     "2026-11-04"
   ],
   "colors": {
-    "Alappuzha": "green",
+    "Alappuzha": "yellow",
     "Ernakulam": "green",
     "Idukki": "yellow",
     "Kannur": "green",
