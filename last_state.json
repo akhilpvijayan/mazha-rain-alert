@@ -4,27 +4,6 @@
     "orange": [],
     "yellow": [
       {
-        "date": "2026-11-02",
-        "districts_ml": [
-          "തൃശൂർ",
-          "പാലക്കാട്",
-          "മലപ്പുറം",
-          "കോഴിക്കോട്",
-          "വയനാട്",
-          "കണ്ണൂർ",
-          "കാസറഗോഡ്"
-        ],
-        "districts_en": [
-          "Thrissur",
-          "Palakkad",
-          "Malappuram",
-          "Kozhikode",
-          "Wayanad",
-          "Kannur",
-          "Kasaragod"
-        ]
-      },
-      {
         "date": "2026-11-03",
         "districts_ml": [
           "മലപ്പുറം",
@@ -42,33 +21,52 @@
         ]
       },
       {
-        "date": "2026-11-06",
+        "date": "2026-11-04",
         "districts_ml": [
-          "ആലപ്പുഴ",
           "കോട്ടയം",
           "ഇടുക്കി",
-          "എറണാകുളം",
-          "തൃശ്ശൂർ",
-          "പാലക്കാട്"
+          "വയനാട്"
         ],
         "districts_en": [
-          "Alappuzha",
           "Kottayam",
           "Idukki",
-          "Ernakulam",
-          "Thrissur",
-          "Palakkad"
+          "Wayanad"
+        ]
+      },
+      {
+        "date": "2026-11-05",
+        "districts_ml": [
+          "പത്തനംതിട്ട"
+        ],
+        "districts_en": [
+          "Pathanamthitta"
+        ]
+      },
+      {
+        "date": "2026-11-06",
+        "districts_ml": [
+          "ഇടുക്കി",
+          "എറണാകുളം"
+        ],
+        "districts_en": [
+          "Idukki",
+          "Ernakulam"
+        ]
+      },
+      {
+        "date": "2026-11-07",
+        "districts_ml": [
+          "പത്തനംതിട്ട",
+          "കോട്ടയം"
+        ],
+        "districts_en": [
+          "Pathanamthitta",
+          "Kottayam"
         ]
       }
     ]
   },
   "district_alert_map": {
-    "Thrissur": [
-      "yellow"
-    ],
-    "Palakkad": [
-      "yellow"
-    ],
     "Malappuram": [
       "yellow"
     ],
@@ -84,13 +82,13 @@
     "Kasaragod": [
       "yellow"
     ],
-    "Alappuzha": [
-      "yellow"
-    ],
     "Kottayam": [
       "yellow"
     ],
     "Idukki": [
+      "yellow"
+    ],
+    "Pathanamthitta": [
       "yellow"
     ],
     "Ernakulam": [
@@ -114,9 +112,11 @@
     "Wayanad": "yellow"
   },
   "available_dates": [
-    "2026-11-02",
     "2026-11-03",
-    "2026-11-06"
+    "2026-11-04",
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07"
   ],
-  "scraped_at": "2026-11-03T08:11:10.856341+05:30"
+  "scraped_at": "2026-11-03T15:39:33.977020+05:30"
 }
