@@ -1,9 +1,10 @@
 {
-  "scraped_at": "2026-11-21T08:22:41.538024+05:30",
+  "scraped_at": "2026-11-21T15:49:00.833327+05:30",
   "date": "2026-11-21",
   "has_data_for_today": false,
   "available_dates": [
-    "2026-11-24"
+    "2026-11-24",
+    "2026-11-25"
   ],
   "colors": {
     "Alappuzha": "green",

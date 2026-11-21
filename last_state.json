@@ -15,6 +15,19 @@
           "Kollam",
           "Pathanamthitta"
         ]
+      },
+      {
+        "date": "2026-11-25",
+        "districts_ml": [
+          "പത്തനംതിട്ട",
+          "കോട്ടയം",
+          "ഇടുക്കി"
+        ],
+        "districts_en": [
+          "Pathanamthitta",
+          "Kottayam",
+          "Idukki"
+        ]
       }
     ]
   },
@@ -26,6 +39,12 @@
       "yellow"
     ],
     "Pathanamthitta": [
+      "yellow"
+    ],
+    "Kottayam": [
+      "yellow"
+    ],
+    "Idukki": [
       "yellow"
     ]
   },
@@ -46,7 +65,8 @@
     "Wayanad": "green"
   },
   "available_dates": [
-    "2026-11-24"
+    "2026-11-24",
+    "2026-11-25"
   ],
-  "scraped_at": "2026-11-21T08:22:41.538024+05:30"
+  "scraped_at": "2026-11-21T15:49:00.833327+05:30"
 }
