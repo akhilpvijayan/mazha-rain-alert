@@ -28,6 +28,19 @@
           "Kottayam",
           "Idukki"
         ]
+      },
+      {
+        "date": "2026-11-26",
+        "districts_ml": [
+          "പത്തനംതിട്ട",
+          "ആലപ്പുഴ",
+          "കോട്ടയം"
+        ],
+        "districts_en": [
+          "Pathanamthitta",
+          "Alappuzha",
+          "Kottayam"
+        ]
       }
     ]
   },
@@ -45,6 +58,9 @@
       "yellow"
     ],
     "Idukki": [
+      "yellow"
+    ],
+    "Alappuzha": [
       "yellow"
     ]
   },
@@ -66,7 +82,8 @@
   },
   "available_dates": [
     "2026-11-24",
-    "2026-11-25"
+    "2026-11-25",
+    "2026-11-26"
   ],
-  "scraped_at": "2026-11-22T08:11:38.250905+05:30"
+  "scraped_at": "2026-11-22T15:53:52.341461+05:30"
 }
