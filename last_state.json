@@ -20,13 +20,17 @@
         "date": "2026-11-25",
         "districts_ml": [
           "പത്തനംതിട്ട",
+          "ആലപ്പുഴ",
           "കോട്ടയം",
-          "ഇടുക്കി"
+          "ഇടുക്കി",
+          "എറണാകുളം"
         ],
         "districts_en": [
           "Pathanamthitta",
+          "Alappuzha",
           "Kottayam",
-          "Idukki"
+          "Idukki",
+          "Ernakulam"
         ]
       },
       {
@@ -34,12 +38,33 @@
         "districts_ml": [
           "പത്തനംതിട്ട",
           "ആലപ്പുഴ",
-          "കോട്ടയം"
+          "കോട്ടയം",
+          "ഇടുക്കി",
+          "എറണാകുളം",
+          "തൃശ്ശൂർ",
+          "പാലക്കാട്"
         ],
         "districts_en": [
           "Pathanamthitta",
           "Alappuzha",
-          "Kottayam"
+          "Kottayam",
+          "Idukki",
+          "Ernakulam",
+          "Thrissur",
+          "Palakkad"
+        ]
+      },
+      {
+        "date": "2026-11-27",
+        "districts_ml": [
+          "ആലപ്പുഴ",
+          "കോട്ടയം",
+          "എറണാകുളം"
+        ],
+        "districts_en": [
+          "Alappuzha",
+          "Kottayam",
+          "Ernakulam"
         ]
       }
     ]
@@ -54,13 +79,22 @@
     "Pathanamthitta": [
       "yellow"
     ],
+    "Alappuzha": [
+      "yellow"
+    ],
     "Kottayam": [
       "yellow"
     ],
     "Idukki": [
       "yellow"
     ],
-    "Alappuzha": [
+    "Ernakulam": [
+      "yellow"
+    ],
+    "Thrissur": [
+      "yellow"
+    ],
+    "Palakkad": [
       "yellow"
     ]
   },
@@ -83,7 +117,8 @@
   "available_dates": [
     "2026-11-24",
     "2026-11-25",
-    "2026-11-26"
+    "2026-11-26",
+    "2026-11-27"
   ],
-  "scraped_at": "2026-11-23T09:39:33.061727+05:30"
+  "scraped_at": "2026-11-23T20:57:09.141514+05:30"
 }
