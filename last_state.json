@@ -104,13 +104,13 @@
     "Idukki": "green",
     "Kannur": "green",
     "Kasaragod": "green",
-    "Kollam": "green",
+    "Kollam": "yellow",
     "Kottayam": "green",
     "Kozhikode": "green",
     "Malappuram": "green",
     "Palakkad": "green",
-    "Pathanamthitta": "green",
-    "Thiruvananthapuram": "green",
+    "Pathanamthitta": "yellow",
+    "Thiruvananthapuram": "yellow",
     "Thrissur": "green",
     "Wayanad": "green"
   },
@@ -120,5 +120,5 @@
     "2026-11-26",
     "2026-11-27"
   ],
-  "scraped_at": "2026-11-23T20:57:09.141514+05:30"
+  "scraped_at": "2026-11-24T08:07:44.470814+05:30"
 }
