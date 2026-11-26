@@ -109,8 +109,8 @@
     "Kasaragod": "green",
     "Kollam": "yellow",
     "Kottayam": "yellow",
-    "Kozhikode": "yellow",
-    "Malappuram": "yellow",
+    "Kozhikode": "green",
+    "Malappuram": "green",
     "Palakkad": "green",
     "Pathanamthitta": "yellow",
     "Thiruvananthapuram": "yellow",
@@ -122,5 +122,5 @@
     "2026-11-26",
     "2026-11-27"
   ],
-  "scraped_at": "2026-11-25T21:42:35.696506+05:30"
+  "scraped_at": "2026-11-26T06:13:45.836769+05:30"
 }
