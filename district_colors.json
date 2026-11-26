@@ -1,9 +1,8 @@
 {
-  "scraped_at": "2026-11-26T06:13:45.836769+05:30",
+  "scraped_at": "2026-11-26T14:27:35.865501+05:30",
   "date": "2026-11-26",
   "has_data_for_today": true,
   "available_dates": [
-    "2026-11-25",
     "2026-11-26",
     "2026-11-27"
   ],
@@ -15,8 +14,8 @@
     "Kasaragod": "green",
     "Kollam": "yellow",
     "Kottayam": "yellow",
-    "Kozhikode": "green",
-    "Malappuram": "green",
+    "Kozhikode": "yellow",
+    "Malappuram": "yellow",
     "Palakkad": "green",
     "Pathanamthitta": "yellow",
     "Thiruvananthapuram": "yellow",
